@@ -1,0 +1,1942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ICDCS 2025 Programme Slides</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #035D51;
+            color: white;
+            overflow: hidden;
+            aspect-ratio: 16/9;
+            height: 100vh;
+        }
+
+        .slide {
+            display: none;
+            padding: 30px;
+            height: 100vh;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        .slide-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #F6BC34;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo-placeholder {
+            width: 140px;
+            height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: none;
+            border: none;
+        }
+
+        .conference-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .conference-title {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #F6BC34;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .conference-location {
+            font-size: 1.1em;
+            color: #B8E6E1;
+            margin-top: 5px;
+            text-align: left;
+        }
+
+        .slide-date {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #F6BC34;
+            text-align: right;
+        }
+
+        .current-time {
+            font-size: 2.6em;
+            font-weight: bold;
+            color: #F6BC34;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .session-type {
+            font-size: 1.5em;
+            text-align: center;
+            margin-bottom: 25px;
+            color: #B8E6E1;
+        }
+
+        .sessions-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .sessions-container.tight {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .session-card {
+            background: rgba(246, 188, 52, 0.1);
+            border-radius: 12px;
+            padding: 18px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(246, 188, 52, 0.3);
+            box-shadow: 0 6px 24px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .session-card.tight {
+            padding: 12px;
+        }
+
+        .session-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .session-title {
+            font-size: 2.4em;
+            font-weight: bold;
+            margin-bottom: 12px;
+            color: #F6BC34;
+            line-height: 1.2;
+        }
+
+        .session-title.tight {
+            font-size: 1.8em;
+            margin-bottom: 8px;
+        }
+
+        .session-room {
+            font-size: 1.6em;
+            color: #B8E6E1;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        .session-room.tight {
+            font-size: 1.4em;
+            margin-bottom: 10px;
+        }
+
+        .session-chair {
+            font-size: 1.3em;
+            color: #8BC4BD;
+            margin-bottom: 16px;
+        }
+
+        .session-chair.tight {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .session-papers {
+            font-size: 1.1em;
+            line-height: 1.3;
+            color: #E8F7F5;
+            display: none;
+        }
+
+        .session-papers.tight {
+            font-size: 1em;
+            line-height: 1.2;
+            display: none;
+        }
+
+        .paper-item {
+            margin-bottom: 10px;
+            padding-left: 14px;
+            border-left: 3px solid #F6BC34;
+            display: none;
+        }
+
+        .paper-item.tight {
+            margin-bottom: 8px;
+            padding-left: 10px;
+            display: none;
+        }
+
+        .navigation {
+            display: none;
+        }
+
+        .slide-indicator {
+            display: none;
+        }
+
+        .qr-link {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(3, 93, 81, 0.9);
+            border: 2px solid #F6BC34;
+            padding: 12px 16px;
+            border-radius: 25px;
+            text-decoration: none;
+            color: #B8E6E1;
+            font-size: 14px;
+            font-weight: 600;
+            transition: background 0.3s ease;
+            z-index: 1000;
+        }
+
+        .qr-link:hover {
+            background: rgba(3, 93, 81, 1);
+        }
+
+        .qr-link img {
+            width: 160px;
+            height: 160px;
+            object-fit: contain;
+        }
+
+        .break-slide {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .break-title {
+            font-size: 5.5em;
+            font-weight: bold;
+            margin-bottom: 25px;
+            color: #F6BC34;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+        }
+
+        .break-time {
+            font-size: 3.2em;
+            margin-bottom: 35px;
+            color: #B8E6E1;
+        }
+
+        .keynote-speaker {
+            font-size: 2.2em;
+            color: #F6BC34;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .keynote-slide {
+            background: #035D51;
+        }
+
+        .workshop-slide {
+            background: #035D51;
+        }
+
+        .main-conference {
+            background: #035D51;
+        }
+
+        .industry-slide {
+            background: #035D51;
+        }
+
+        .industry-keynote-label {
+            background: #F6BC34;
+            color: #035D51;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.9em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        .slide-main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .slide.break-slide .slide-main,
+        .slide.keynote-slide .slide-main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+
+        .slide.break-slide .slide-main > *,
+        .slide.keynote-slide .slide-main > * {
+            width: 100%;
+            text-align: center;
+        }
+
+        .slide.break-slide .slide-main > div[style*="font-size: 1.6em"],
+        .slide.keynote-slide .slide-main > div[style*="font-size: 1.6em"] {
+            font-size: 2.2em !important;
+        }
+
+        /* Control Panel Styles */
+        .control-panel {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(3, 93, 81, 0.95);
+            border: 2px solid #F6BC34;
+            border-radius: 15px;
+            padding: 15px;
+            z-index: 1000;
+            font-size: 14px;
+            min-width: 300px;
+            backdrop-filter: blur(10px);
+        }
+
+        .control-panel h3 {
+            margin: 0 0 10px 0;
+            color: #F6BC34;
+            font-size: 16px;
+        }
+
+        .control-panel .current-time-display {
+            color: #B8E6E1;
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .control-panel .auto-status {
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .control-panel .auto-status.enabled {
+            color: #4CAF50;
+        }
+
+        .control-panel .auto-status.disabled {
+            color: #FF6B6B;
+        }
+
+        .control-panel button, .control-panel select, .control-panel input {
+            background: #F6BC34;
+            color: #035D51;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-weight: bold;
+            margin: 2px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .control-panel button:hover {
+            background: #E6A429;
+        }
+
+        .control-panel .test-mode {
+            border-top: 1px solid #F6BC34;
+            margin-top: 10px;
+            padding-top: 10px;
+        }
+
+        .control-panel .test-mode h4 {
+            margin: 0 0 8px 0;
+            color: #F6BC34;
+            font-size: 14px;
+        }
+
+        .slide-info {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(3, 93, 81, 0.9);
+            border: 2px solid #F6BC34;
+            padding: 10px 15px;
+            border-radius: 15px;
+            font-size: 14px;
+            color: #B8E6E1;
+            z-index: 1000;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Control Panel -->
+    <div class="control-panel" id="controlPanel">
+        <h3>Slide Control</h3>
+        <div class="current-time-display" id="currentTimeDisplay"></div>
+        <div class="auto-status" id="autoStatus">Auto-Advance: DISABLED</div>
+        
+        <button id="toggleAuto">Enable Auto-Advance</button>
+        <button id="hidePanel">Hide Panel</button>
+        <br>
+        
+        <button onclick="previousSlide()">◀ Previous</button>
+        <button onclick="nextSlide()">Next ▶</button>
+        
+        <div class="test-mode">
+            <h4>Test Mode</h4>
+            <label>Test Date: 
+                <select id="testDate">
+                    <option value="">Use Current Time</option>
+                    <option value="2025-07-20">Sunday, July 20</option>
+                    <option value="2025-07-21">Monday, July 21</option>
+                    <option value="2025-07-22">Tuesday, July 22</option>
+                    <option value="2025-07-23">Wednesday, July 23</option>
+                </select>
+            </label>
+            <br>
+            <label>Test Time: 
+                <input type="time" id="testTime" />
+            </label>
+            <br>
+            <button id="applyTestTime">Apply Test Time</button>
+            <button id="clearTestTime">Use Real Time</button>
+        </div>
+    </div>
+
+    <!-- Slide Info -->
+    <div class="slide-info" id="slideInfo">
+        Slide 1 of 34
+    </div>
+
+    <!-- Show Panel Button (when hidden) -->
+    <button id="showPanel" class="hidden" style="position: fixed; top: 20px; left: 20px; background: #F6BC34; color: #035D51; border: none; padding: 10px; border-radius: 8px; font-weight: bold; z-index: 1001; cursor: pointer;">
+        Show Controls
+    </button>
+
+    <!-- Slide 0: Sunday Morning Workshops/Tutorials -->
+    <div class="slide active workshop-slide">
+        <div class="slide-header">
+            <div class="header-left">
+                <div class="logo-placeholder"><img src="logo.png" alt="ICDCS 2025 Logo" style="width: 140px; height: 140px; object-fit: contain;"></div>
+                <div class="conference-info">
+                    <div class="conference-title">ICDCS 2025</div>
+                    <div class="conference-location">Glasgow, UK</div>
+                </div>
+            </div>
+            <div class="slide-date">Sunday, 20 July</div>
+        </div>
+        <div class="slide-main">
+            <div class="current-time">09:00-10:30</div>
+            <div class="session-type">Workshops & Tutorials (Morning Session 1)</div>
+            <div class="sessions-container tight">
+                <div class="session-card tight">
+                    <div class="session-title tight">T1: Federated Learning and Network Security</div>
+                    <div class="session-room tight">Megalith 2</div>
+                    <div style="font-size: 1.1em; color: #B8E6E1;">Foundations, Potential, and Resilience</div>
+                </div>
+                <div class="session-card tight">
+                    <div class="session-title tight">T5: AI-Native Joint Communication</div>
+                    <div class="session-room tight">Room 1</div>
+                    <div style="font-size: 1.1em; color: #B8E6E1;">6G Networks and Beyond</div>
+                </div>
+                <div class="session-card tight">
+                    <div class="session-title tight">T6: Network Simulation Bridge</div>
+                    <div class="session-room tight">Room 2</div>
+                    <div style="font-size: 1.1em; color: #B8E6E1;">Bridging Distributed Applications</div>
+                </div>
+                <div class="session-card tight">
+                    <div class="session-title tight">T2: Knowledge Graphs and LLMs</div>
+                    <div class="session-room tight">Finnieston</div>
+                    <div style="font-size: 1.1em; color: #B8E6E1;">Advancing Scientific Research</div>
+                </div>
+                <div class="session-card tight">
+                    <div class="session-title tight">FL4WEB Workshop</div>
+                    <div class="session-room tight">Megalith 3</div>
+                    <div style="font-size: 1.1em; color: #B8E6E1;">Federated Learning for Web Technologies</div>
+                </div>
+                <div class="session-card tight">
+                    <div class="session-title tight">DCSSL Workshop</div>
+                    <div class="session-room tight">Room 4</div>
+                    <div style="font-size: 1.1em; color: #B8E6E1;">Distributed Computing for Smart Logistics</div>
+                </div>
+                <div class="session-card tight">
+                    <div class="session-title tight">SPARCSNet Workshop</div>
+                    <div class="session-room tight">Room 4</div>
+                    <div style="font-size: 1.1em; color: #B8E6E1;">Security, Privacy and Resilience</div>
+                </div>
+                <div class="session-card tight">
+                    <div class="session-title tight">HiPER3D Workshop</div>
+                    <div class="session-room tight">Room 5</div>
+                    <div style="font-size: 1.1em; color: #B8E6E1;">High Performance 3D Chiplets</div>
+                </div>
+                <div class="session-card tight">
+                    <div class="session-title tight">ANMS Workshop</div>
+                    <div class="session-room tight">Room 7</div>
+                    <div style="font-size: 1.1em; color: #B8E6E1;">Autonomous Network Management</div>
+                </div>
+                <div class="session-card tight">
+                    <div class="session-title tight">EDCCS Workshop</div>
+                    <div class="session-room tight">Room 3</div>
+                    <div style="font-size: 1.1em; color: #B8E6E1;">Engineering Distributed Computing</div>
+                </div>
+                <div class="session-card tight">
+                    <div class="session-title tight">DICG Workshop</div>
+                    <div class="session-room tight">Room 6</div>
+                    <div style="font-size: 1.1em; color: #B8E6E1;">Distributed Infrastructure for Common Good</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 1: Coffee Break -->
+    <div class="slide break-slide">
+        <div class="slide-header">
+            <div class="header-left">
+                <div class="logo-placeholder"><img src="logo.png" alt="ICDCS 2025 Logo" style="width: 140px; height: 140px; object-fit: contain;"></div>
+                <div class="conference-info">
+                    <div class="conference-title">ICDCS 2025</div>
+                    <div class="conference-location">Glasgow, UK</div>
+                </div>
+            </div>
+            <div class="slide-date">Sunday, 20 July</div>
+        </div>
+        <div class="slide-main">
+            <div class="break-title">Coffee Break</div>
+            <div class="break-time">10:30-11:00</div>
+            <div style="font-size: 1.6em; color: #B8E6E1;">Please enjoy refreshments in the foyer</div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Sunday Morning Session 2 -->
+    <div class="slide workshop-slide">
+        <div class="slide-header">
+            <div class="header-left">
+                <div class="logo-placeholder"><img src="logo.png" alt="ICDCS 2025 Logo" style="width: 140px; height: 140px; object-fit: contain;"></div>
+                <div class="conference-info">
+                    <div class="conference-title">ICDCS 2025</div>
+                    <div class="conference-location">Glasgow, UK</div>
+                </div>
+            </div>
+            <div class="slide-date">Sunday, 20 July</div>
+        </div>
+        <div class="slide-main">
+            <div class="current-time">11:00-12:30</div>
+            <div class="session-type">Workshops & Tutorials (Morning Session 2)</div>
+            <div class="sessions-container tight">
+                <div class="session-card tight">
+                    <div class="session-title tight">T1: Federated Learning and Network Security</div>
+                    <div class="session-room tight">Megalith 2</div>
+                    <div style="font-size: 1.1em; color: #B8E6E1;">Foundations, Potential, and Resilience (Continued)</div>
+                </div>
+                <div class="session-card tight">
+                    <div class="session-title tight">T5: AI-Native Joint Communication</div>
+                    <div class="session-room tight">Room 1</div>
+                    <div style="font-size: 1.1em; color: #B8E6E1;">6G Networks and Beyond (Continued)</div>
+                </div>
+                <div class="session-card tight">
+                    <div class="session-title tight">T6: Network Simulation Bridge</div>
+                    <div class="session-room tight">Room 2</div>
+                    <div style="font-size: 1.1em; color: #B8E6E1;">Bridging Distributed Applications (Continued)</div>
+                </div>
+                <div class="session-card tight">
+                    <div class="session-title tight">T2: Knowledge Graphs and LLMs</div>
+                    <div class="session-room tight">Finnieston</div>
+                    <div style="font-size: 1.1em; color: #B8E6E1;">Advancing Scientific Research (Continued)</div>
+                </div>
+                <div class="session-card tight">
+                    <div class="session-title tight">FL4WEB Workshop</div>
+                    <div class="session-room tight">Megalith 3</div>
+                    <div style="font-size: 1.1em; color: #B8E6E1;">Federated Learning for Web Technologies (Continued)</div>
+                </div>
+                <div class="session-card tight">
+                    <div class="session-title tight">DCSSL Workshop</div>
+                    <div class="session-room tight">Room 4</div>
+                    <div style="font-size: 1.1em; color: #B8E6E1;">Distributed Computing for Smart Logistics (Continued)</div>
+                </div>
+                <div class="session-card tight">
+                    <div class="session-title tight">SPARCSNet Workshop</div>
+                    <div class="session-room tight">Room 4</div>
+                    <div style="font-size: 1.1em; color: #B8E6E1;">Security, Privacy and Resilience (Continued)</div>
+                </div>
+                <div class="session-card tight">
+                    <div class="session-title tight">HiPER3D Workshop</div>
+                    <div class="session-room tight">Room 5</div>
+                    <div style="font-size: 1.1em; color: #B8E6E1;">High Performance 3D Chiplets (Continued)</div>
+                </div>
+                <div class="session-card tight">
+                    <div class="session-title tight">ANMS Workshop</div>
+                    <div class="session-room tight">Room 7</div>
+                    <div style="font-size: 1.1em; color: #B8E6E1;">Autonomous Network Management (Continued)</div>
+                </div>
+                <div class="session-card tight">
+                    <div class="session-title tight">EDCCS Workshop</div>
+                    <div class="session-room tight">Room 3</div>
+                    <div style="font-size: 1.1em; color: #B8E6E1;">Engineering Distributed Computing (Continued)</div>
+                </div>
+                <div class="session-card tight">
+                    <div class="session-title tight">DICG Workshop</div>
+                    <div class="session-room tight">Room 6</div>
+                    <div style="font-size: 1.1em; color: #B8E6E1;">Distributed Infrastructure for Common Good (Continued)</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Lunch Break -->
+    <div class="slide break-slide">
+        <div class="slide-header">
+            <div class="header-left">
+                <div class="logo-placeholder"><img src="logo.png" alt="ICDCS 2025 Logo" style="width: 140px; height: 140px; object-fit: contain;"></div>
+                <div class="conference-info">
+                    <div class="conference-title">ICDCS 2025</div>
+                    <div class="conference-location">Glasgow, UK</div>
+                </div>
+            </div>
+            <div class="slide-date">Sunday, 20 July</div>
+        </div>
+        <div class="slide-main">
+            <div class="break-title">Lunch Break</div>
+            <div class="break-time">12:30-13:45</div>
+            <div style="font-size: 1.6em; color: #B8E6E1;">Please enjoy lunch</div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Sunday Afternoon Session 1 -->
+    <div class="slide workshop-slide">
+        <div class="slide-header">
+            <div class="header-left">
+                <div class="logo-placeholder"><img src="logo.png" alt="ICDCS 2025 Logo" style="width: 140px; height: 140px; object-fit: contain;"></div>
+                <div class="conference-info">
+                    <div class="conference-title">ICDCS 2025</div>
+                    <div class="conference-location">Glasgow, UK</div>
+                </div>
+            </div>
+            <div class="slide-date">Sunday, 20 July</div>
+        </div>
+        <div class="slide-main">
+            <div class="current-time">13:45-15:15</div>
+            <div class="session-type">Workshops, Tutorials & Doctoral Consortium</div>
+            <div class="sessions-container tight">
+                <div class="session-card tight">
+                    <div class="session-title tight">T3: Serverless Orchestration</div>
+                    <div class="session-room tight">Megalith 2</div>
+                    <div style="font-size: 1.1em; color: #B8E6E1;">Edge-Cloud Continuum: Functions to LLMs</div>
+                </div>
+                <div class="session-card tight">
+                    <div class="session-title tight">T4: Trustworthiness and Consensus</div>
+                    <div class="session-room tight">Room 1</div>
+                    <div style="font-size: 1.1em; color: #B8E6E1;">Distributed and Connected Autonomous Systems</div>
+                </div>
+                <div class="session-card tight">
+                    <div class="session-title tight">T7: Redefining Telecommunications</div>
+                    <div class="session-room tight">Room 2</div>
+                    <div style="font-size: 1.1em; color: #B8E6E1;">Data Engineering and Blockchain for B5G/6G</div>
+                </div>
+                <div class="session-card tight">
+                    <div class="session-title tight">T8: Distributed Multi-Agent AI</div>
+                    <div class="session-room tight">Finnieston</div>
+                    <div style="font-size: 1.1em; color: #B8E6E1;">Scalability, Challenges, and Applications</div>
+                </div>
+                <div class="session-card tight">
+                    <div class="session-title tight">Doctoral Consortium</div>
+                    <div class="session-room tight">Room 6</div>
+                    <div style="font-size: 1.1em; color: #B8E6E1;">Core Advances in Distributed AI & Federated Learning</div>
+                </div>
+                <div class="session-card tight">
+                    <div class="session-title tight">FL4WEB Workshop</div>
+                    <div class="session-room tight">Megalith 3</div>
+                    <div style="font-size: 1.1em; color: #B8E6E1;">Federated Learning for Web Technologies</div>
+                </div>
+                <div class="session-card tight">
+                    <div class="session-title tight">DGAIW Workshop</div>
+                    <div class="session-room tight">Room 4</div>
+                    <div style="font-size: 1.1em; color: #B8E6E1;">Distributed Generative AI for Wireless</div>
+                </div>
+                <div class="session-card tight">
+                    <div class="session-title tight">FedEdgeAI Workshop</div>
+                    <div class="session-room tight">Room 5</div>
+                    <div style="font-size: 1.1em; color: #B8E6E1;">Federated Learning for Wireless Edge AI</div>
+                </div>
+                <div class="session-card tight">
+                    <div class="session-title tight">FPPAI Workshop</div>
+                    <div class="session-room tight">Room 7</div>
+                    <div style="font-size: 1.1em; color: #B8E6E1;">Federated and Privacy Preserving AI</div>
+                </div>
+                <div class="session-card tight">
+                    <div class="session-title tight">HotDiML Workshop</div>
+                    <div class="session-room tight">Room 3</div>
+                    <div style="font-size: 1.1em; color: #B8E6E1;">Hot Topics in Distributed Machine Learning</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Coffee Break Sunday Afternoon -->
+    <div class="slide break-slide">
+        <div class="slide-header">
+            <div class="header-left">
+                <div class="logo-placeholder"><img src="logo.png" alt="ICDCS 2025 Logo" style="width: 140px; height: 140px; object-fit: contain;"></div>
+                <div class="conference-info">
+                    <div class="conference-title">ICDCS 2025</div>
+                    <div class="conference-location">Glasgow, UK</div>
+                </div>
+            </div>
+            <div class="slide-date">Sunday, 20 July</div>
+        </div>
+        <div class="slide-main">
+            <div class="break-title">Coffee Break</div>
+            <div class="break-time">15:15-15:45</div>
+            <div style="font-size: 1.6em; color: #B8E6E1;">Please enjoy refreshments in the foyer</div>
+        </div>
+    </div>
+
+    <!-- Slide 6: Sunday Afternoon Session 2 -->
+    <div class="slide workshop-slide">
+        <div class="slide-header">
+            <div class="header-left">
+                <div class="logo-placeholder"><img src="logo.png" alt="ICDCS 2025 Logo" style="width: 140px; height: 140px; object-fit: contain;"></div>
+                <div class="conference-info">
+                    <div class="conference-title">ICDCS 2025</div>
+                    <div class="conference-location">Glasgow, UK</div>
+                </div>
+            </div>
+            <div class="slide-date">Sunday, 20 July</div>
+        </div>
+        <div class="slide-main">
+            <div class="current-time">15:45-17:15</div>
+            <div class="session-type">Workshops, Tutorials & Doctoral Consortium (Afternoon Session 2)</div>
+            <div class="sessions-container tight">
+                <div class="session-card tight">
+                    <div class="session-title tight">T3: Serverless Orchestration</div>
+                    <div class="session-room tight">Megalith 2</div>
+                    <div style="font-size: 1.1em; color: #B8E6E1;">Edge-Cloud Continuum: Functions to LLMs (Continued)</div>
+                </div>
+                <div class="session-card tight">
+                    <div class="session-title tight">T4: Trustworthiness and Consensus</div>
+                    <div class="session-room tight">Room 1</div>
+                    <div style="font-size: 1.1em; color: #B8E6E1;">Distributed and Connected Autonomous Systems (Continued)</div>
+                </div>
+                <div class="session-card tight">
+                    <div class="session-title tight">T7: Redefining Telecommunications</div>
+                    <div class="session-room tight">Room 2</div>
+                    <div style="font-size: 1.1em; color: #B8E6E1;">Data Engineering and Blockchain for B5G/6G (Continued)</div>
+                </div>
+                <div class="session-card tight">
+                    <div class="session-title tight">T8: Distributed Multi-Agent AI</div>
+                    <div class="session-room tight">Finnieston</div>
+                    <div style="font-size: 1.1em; color: #B8E6E1;">Scalability, Challenges, and Applications (Continued)</div>
+                </div>
+                <div class="session-card tight">
+                    <div class="session-title tight">Doctoral Consortium</div>
+                    <div class="session-room tight">Room 6</div>
+                    <div style="font-size: 1.1em; color: #B8E6E1;">Distributed AI in Real-World Systems</div>
+                </div>
+                <div class="session-card tight">
+                    <div class="session-title tight">FL4WEB Workshop</div>
+                    <div class="session-room tight">Megalith 3</div>
+                    <div style="font-size: 1.1em; color: #B8E6E1;">Federated Learning for Web Technologies (Continued)</div>
+                </div>
+                <div class="session-card tight">
+                    <div class="session-title tight">DGAIW Workshop</div>
+                    <div class="session-room tight">Room 4</div>
+                    <div style="font-size: 1.1em; color: #B8E6E1;">Distributed Generative AI for Wireless (Continued)</div>
+                </div>
+                <div class="session-card tight">
+                    <div class="session-title tight">FedEdgeAI Workshop</div>
+                    <div class="session-room tight">Room 5</div>
+                    <div style="font-size: 1.1em; color: #B8E6E1;">Federated Learning for Wireless Edge AI (Continued)</div>
+                </div>
+                <div class="session-card tight">
+                    <div class="session-title tight">FPPAI Workshop</div>
+                    <div class="session-room tight">Room 7</div>
+                    <div style="font-size: 1.1em; color: #B8E6E1;">Federated and Privacy Preserving AI (Continued)</div>
+                </div>
+                <div class="session-card tight">
+                    <div class="session-title tight">HotDiML Workshop</div>
+                    <div class="session-room tight">Room 3</div>
+                    <div style="font-size: 1.1em; color: #B8E6E1;">Hot Topics in Distributed Machine Learning (Continued)</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 7: Welcome Reception -->
+    <div class="slide break-slide">
+    <div class="slide-header">
+        <div class="header-left">
+            <div class="logo-placeholder"><img src="logo.png" alt="ICDCS 2025 Logo" style="width: 140px; height: 140px; object-fit: contain;"></div>
+            <div class="conference-info">
+                <div class="conference-title">ICDCS 2025</div>
+                <div class="conference-location">Glasgow, UK</div>
+            </div>
+        </div>
+        <div class="slide-date">Sunday, 20 July</div>
+    </div>
+    <div class="slide-main">
+        <div class="break-title">Conference Welcome Reception</div>
+        <div class="break-time">19:00</div>
+        <div style="font-size: 1.6em; color: #B8E6E1;">Radisson Blu</div>
+    </div>
+    </div>
+
+    <!-- Slide 8: Monday Opening & Keynote -->
+    <div class="slide break-slide keynote-slide">
+    <div class="slide-header">
+        <div class="header-left">
+            <div class="logo-placeholder"><img src="logo.png" alt="ICDCS 2025 Logo" style="width: 140px; height: 140px; object-fit: contain;"></div>
+            <div class="conference-info">
+                <div class="conference-title">ICDCS 2025</div>
+                <div class="conference-location">Glasgow, UK</div>
+            </div>
+        </div>
+        <div class="slide-date">Monday, 21 July</div>
+    </div>
+    <div class="slide-main">
+        <div class="break-title">Opening Ceremony & Keynote 1</div>
+        <div class="keynote-speaker">Peter Druschel</div>
+        <div class="break-time">08:30-10:00</div>
+        <div class="session-room" style="font-size: 1.6em; color: #B8E6E1;">Megalith 2 & 3</div>
+    </div>
+    </div>
+
+    <!-- After Monday Keynote (08:30–10:00) -->
+    <div class="slide break-slide">
+        <div class="slide-header">
+            <div class="header-left">
+                <div class="logo-placeholder"><img src="logo.png" alt="ICDCS 2025 Logo" style="width: 140px; height: 140px; object-fit: contain;"></div>
+                <div class="conference-info">
+                    <div class="conference-title">ICDCS 2025</div>
+                    <div class="conference-location">Glasgow, UK</div>
+                </div>
+            </div>
+            <div class="slide-date">Monday, 21 July</div>
+        </div>
+        <div class="slide-main">
+            <div class="break-title">Coffee Break</div>
+            <div class="break-time">10:00-10:30</div>
+            <div style="font-size: 1.6em; color: #B8E6E1;">Please enjoy refreshments in the foyer</div>
+        </div>
+    </div>
+
+    <!-- Slide 9: Monday Morning Technical Sessions -->
+    <div class="slide main-conference">
+        <div class="slide-header">
+            <div class="header-left">
+                <div class="logo-placeholder"><img src="logo.png" alt="ICDCS 2025 Logo" style="width: 140px; height: 140px; object-fit: contain;"></div>
+                <div class="conference-info">
+                    <div class="conference-title">ICDCS 2025</div>
+                    <div class="conference-location">Glasgow, UK</div>
+                </div>
+            </div>
+            <div class="slide-date">Monday, 21 July</div>
+        </div>
+        <div class="slide-main">
+            <div class="current-time">10:30-12:00</div>
+            <div class="session-type">Technical Morning Sessions 1</div>
+            <div class="sessions-container">
+                <div class="session-card">
+                    <div class="session-title">AI/ML 1: Decentralized and Collaborative Learning</div>
+                    <div class="session-room">Megalith 2</div>
+                    <div class="session-chair">Chair: Sonia Ben Mokhtar, LIRIS CNRS</div>
+                    <div class="session-papers">
+                        <div class="paper-item">PRISAM: Efficient Personalization via BN Masks</div>
+                        <div class="paper-item">Few-Shot Domain Adaptation for Data Drift Mitigation</div>
+                        <div class="paper-item">FedShapleX: Shapley Value Driven Context-Aware FL</div>
+                        <div class="paper-item">PairUpLight: Multi-agent RL for Traffic Signal Control</div>
+                    </div>
+                </div>
+                <div class="session-card">
+                    <div class="session-title">Edge 1: Efficient and Adaptive Edge Computing</div>
+                    <div class="session-room">Megalith 3</div>
+                    <div class="session-chair">Chair: Ming Zhao, Arizona State University</div>
+                    <div class="session-papers">
+                        <div class="paper-item">NeRFlex: Real-time High-quality Rendering on Mobile</div>
+                        <div class="paper-item">MPRD for Peer to Peer Content Delivery</div>
+                        <div class="paper-item">TACO: Tackling Over-correction in Federated Learning</div>
+                        <div class="paper-item">Plan-Based Scalable Online Virtual Network Embedding</div>
+                    </div>
+                </div>
+                <div class="session-card">
+                    <div class="session-title">BC&DB 1: Security and Fairness in Blockchain</div>
+                    <div class="session-room">Finnieston</div>
+                    <div class="session-chair">Chair: Muoi Tran, Chalmers University</div>
+                    <div class="session-papers">
+                        <div class="paper-item">EquiBFT: Framework for Fairness in BFT Consensus</div>
+                        <div class="paper-item">Mosaic: Client-driven Account Allocation Framework</div>
+                        <div class="paper-item">Asynchronous Dynamic Committee Proactive Secret Sharing</div>
+                        <div class="paper-item">Depermissioning Web3: Permissionless Accountable RPC</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- After Monday Morning Session (10:30–12:00) -->
+    <div class="slide break-slide">
+        <div class="slide-header">
+            <div class="header-left">
+                <div class="logo-placeholder"><img src="logo.png" alt="ICDCS 2025 Logo" style="width: 140px; height: 140px; object-fit: contain;"></div>
+                <div class="conference-info">
+                    <div class="conference-title">ICDCS 2025</div>
+                    <div class="conference-location">Glasgow, UK</div>
+                </div>
+            </div>
+            <div class="slide-date">Monday, 21 July</div>
+        </div>
+        <div class="slide-main">
+            <div class="break-title">Lunch Break</div>
+            <div class="break-time">12:00-13:15</div>
+            <div style="font-size: 1.6em; color: #B8E6E1;">Please enjoy lunch</div>
+        </div>
+    </div>
+
+    <!-- Slide 10: Monday Afternoon Session 1 -->
+    <div class="slide main-conference">
+    <div class="slide-header">
+        <div class="header-left">
+            <div class="logo-placeholder"><img src="logo.png" alt="ICDCS 2025 Logo" style="width: 140px; height: 140px; object-fit: contain;"></div>
+            <div class="conference-info">
+                <div class="conference-title">ICDCS 2025</div>
+                <div class="conference-location">Glasgow, UK</div>
+            </div>
+        </div>
+        <div class="slide-date">Monday, 21 July</div>
+    </div>
+    <div class="slide-main">
+        <div class="current-time">13:15-14:45</div>
+        <div class="session-type">Technical Afternoon Sessions 1</div>
+        <div class="sessions-container">
+            <div class="session-card">
+                <div class="session-title">DS4AI/ML 1: Sustainable and Efficient Training</div>
+                <div class="session-room">Megalith 2</div>
+                <div class="session-chair">Chair: Reza Farahani, University of Klagenfurt</div>
+                <div class="session-papers">
+                    <div class="paper-item">LLMSched: Uncertainty-Aware Workload Scheduling</div>
+                    <div class="paper-item">Communication-Efficient MoE Fine-Tuning</div>
+                    <div class="paper-item">Shuffle-Exchange: Enhancing Collective Communication</div>
+                    <div class="paper-item">GreenFL: Carbon-efficient Federated Learning</div>
+                </div>
+            </div>
+            <div class="session-card">
+                <div class="session-title">S&P 1: Attacks and Defense in Collaboration</div>
+                <div class="session-room">Megalith 3</div>
+                <div class="session-chair">Chair: David Mohaisen, University of Central Florida</div>
+                <div class="session-papers">
+                    <div class="paper-item">InverCRS: Generative Audio Inversion Attack</div>
+                    <div class="paper-item">BEyes: Unseen Eyes Snooping Pattern Lock via BFI</div>
+                    <div class="paper-item">Too Clever by Half: Detecting Model Stealing Attacks</div>
+                    <div class="paper-item">HarDTAPE: Hardware Dedicated Trusted Pre-Executor</div>
+                </div>
+            </div>
+            <div class="session-card">
+                <div class="session-title">Cloud 1: Optimizing Cloud Networking and Systems</div>
+                <div class="session-room">Finnieston</div>
+                <div class="session-chair">Chair: Aleksander Slominski, IBM Research</div>
+                <div class="session-papers">
+                    <div class="paper-item">Efficient Serverless Cold Start Optimization</div>
+                    <div class="paper-item">P4CEMaker: Automated Hardware Acceleration</div>
+                    <div class="paper-item">PEE: Precise ECN Encoding for Congestion Control</div>
+                    <div class="paper-item">Octopus: Decentralized Workflow-granular Scheduling</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- Slide 11: Monday Coffee Break -->
+    <div class="slide break-slide">
+    <div class="slide-header">
+        <div class="header-left">
+            <div class="logo-placeholder"><img src="logo.png" alt="ICDCS 2025 Logo" style="width: 140px; height: 140px; object-fit: contain;"></div>
+            <div class="conference-info">
+                <div class="conference-title">ICDCS 2025</div>
+                <div class="conference-location">Glasgow, UK</div>
+            </div>
+        </div>
+        <div class="slide-date">Monday, 21 July</div>
+    </div>
+    <div class="slide-main">
+        <div class="break-title">Coffee Break</div>
+        <div class="break-time">14:45-15:15</div>
+        <div style="font-size: 1.6em; color: #B8E6E1;">Please enjoy refreshments in the foyer</div>
+    </div>
+    </div>
+
+    <!-- Slide 12: Monday Afternoon Session 2 -->
+    <div class="slide main-conference">
+    <div class="slide-header">
+        <div class="header-left">
+            <div class="logo-placeholder"><img src="logo.png" alt="ICDCS 2025 Logo" style="width: 140px; height: 140px; object-fit: contain;"></div>
+            <div class="conference-info">
+                <div class="conference-title">ICDCS 2025</div>
+                <div class="conference-location">Glasgow, UK</div>
+            </div>
+        </div>
+        <div class="slide-date">Monday, 21 July</div>
+    </div>
+    <div class="slide-main">
+        <div class="current-time">15:15-16:45</div>
+        <div class="session-type">Technical Afternoon Sessions 2</div>
+        <div class="sessions-container">
+            <div class="session-card">
+                <div class="session-title">AI/ML 2: Efficient Training and Resource Management</div>
+                <div class="session-room">Megalith 2</div>
+                <div class="session-chair">Chair: Hai Huang, Atlassian</div>
+                <div class="session-papers">
+                    <div class="paper-item">Mast: Efficient Training of MoE Transformers</div>
+                    <div class="paper-item">Mitigating Contention in Stream Multiprocessors</div>
+                    <div class="paper-item">SimDC: High-Fidelity Device Simulation Platform</div>
+                    <div class="paper-item">Congestion Control for Blockchain-enabled SDN</div>
+                </div>
+            </div>
+            <div class="session-card">
+                <div class="session-title">IoT&CPS 1: Mobile Agents and Perception</div>
+                <div class="session-room">Megalith 3</div>
+                <div class="session-chair">Chair: Angelos Marnerides, University of Cyprus</div>
+                <div class="session-papers">
+                    <div class="paper-item">U-Mesh: UAV Network for Powerline Inspection</div>
+                    <div class="paper-item">CoPe: Taming Collaborative 3D Perception</div>
+                    <div class="paper-item">Saga: Multi-granularity Semantics from IMU Data</div>
+                    <div class="paper-item">mmUAVsense: mmWave Radar-based UAV Detection</div>
+                </div>
+            </div>
+            <div class="session-card">
+                <div class="session-title">BC&DB 2: Smart Contracts and Consensus</div>
+                <div class="session-room">Finnieston</div>
+                <div class="session-chair">Chair: Xiapu Luo, Hong Kong Polytechnic University</div>
+                <div class="session-papers">
+                    <div class="paper-item">Mahi-Mahi: Low-Latency Asynchronous BFT DAG</div>
+                    <div class="paper-item">Uncovering Hidden Proxy Smart Contracts</div>
+                    <div class="paper-item">Enabling Bitcoin Smart Contracts on Internet Computer</div>
+                    <div class="paper-item">Lumi: Lightweight Blockchain Layer 2 Protocol</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- Slide 13: WiDCS Event -->
+    <div class="slide break-slide">
+    <div class="slide-header">
+        <div class="header-left">
+            <div class="logo-placeholder"><img src="logo.png" alt="ICDCS 2025 Logo" style="width: 140px; height: 140px; object-fit: contain;"></div>
+            <div class="conference-info">
+                <div class="conference-title">ICDCS 2025</div>
+                <div class="conference-location">Glasgow, UK</div>
+            </div>
+        </div>
+        <div class="slide-date">Monday, 21 July</div>
+    </div>
+    <div class="slide-main">
+        <div class="break-title">Women in Distributed Computing Systems (WiDCS)</div>
+        <div class="break-time">17:00-18:30</div>
+        <div style="font-size: 1.6em; color: #B8E6E1;">Event & Reception - Megalith 2, Radisson Blu</div>
+    </div>
+    </div>
+
+    <!-- Slide 14: Tuesday Keynote -->
+    <div class="slide break-slide keynote-slide">
+    <div class="slide-header">
+        <div class="header-left">
+            <div class="logo-placeholder"><img src="logo.png" alt="ICDCS 2025 Logo" style="width: 140px; height: 140px; object-fit: contain;"></div>
+            <div class="conference-info">
+                <div class="conference-title">ICDCS 2025</div>
+                <div class="conference-location">Glasgow, UK</div>
+            </div>
+        </div>
+        <div class="slide-date">Tuesday, 22 July</div>
+    </div>
+    <div class="slide-main">
+        <div class="break-title">Keynote 2</div>
+        <div class="keynote-speaker">Ling Liu</div>
+        <div class="break-time">09:00-10:00</div>
+        <div class="session-room" style="font-size: 1.6em; color: #B8E6E1;">Megalith 2 & 3</div>
+    </div>
+    </div>
+
+    <!-- After Tuesday Keynote (09:00–10:00) -->
+    <div class="slide break-slide">
+        <div class="slide-header">
+            <div class="header-left">
+                <div class="logo-placeholder"><img src="logo.png" alt="ICDCS 2025 Logo" style="width: 140px; height: 140px; object-fit: contain;"></div>
+                <div class="conference-info">
+                    <div class="conference-title">ICDCS 2025</div>
+                    <div class="conference-location">Glasgow, UK</div>
+                </div>
+            </div>
+            <div class="slide-date">Tuesday, 22 July</div>
+        </div>
+        <div class="slide-main">
+            <div class="break-title">Coffee Break</div>
+            <div class="break-time">10:00-10:30</div>
+            <div style="font-size: 1.6em; color: #B8E6E1;">Please enjoy refreshments in the foyer</div>
+        </div>
+    </div>
+
+    <!-- Slide 15: Tuesday Morning Sessions with Industry -->
+    <div class="slide industry-slide">
+    <div class="slide-header">
+        <div class="header-left">
+            <div class="logo-placeholder"><img src="logo.png" alt="ICDCS 2025 Logo" style="width: 140px; height: 140px; object-fit: contain;"></div>
+            <div class="conference-info">
+                <div class="conference-title">ICDCS 2025</div>
+                <div class="conference-location">Glasgow, UK</div>
+            </div>
+        </div>
+        <div class="slide-date">Tuesday, 22 July</div>
+    </div>
+    <div class="slide-main">
+        <div class="current-time">10:30-12:00</div>
+        <div class="session-type">Technical Sessions with Industry Track</div>
+        <div class="sessions-container">
+            <div class="session-card">
+                <div class="session-title">DS4AI/ML 2: Distributed Training and Inference</div>
+                <div class="session-room">Megalith 2</div>
+                <div class="session-chair">Chair: Marco Levorato, UC Irvine</div>
+                <div class="session-papers">
+                    <div class="paper-item">SOLB: Synchronization-Objective Load Balancing</div>
+                    <div class="paper-item">Demystifying Distributed Training of Graph Neural Networks</div>
+                    <div class="paper-item">S2M3: Split-and-Share Multi-Modal Models</div>
+                    <div class="paper-item">CAFGD: Reduce Fragmentation in GPU Sharing</div>
+                </div>
+            </div>
+            <div class="session-card">
+                <div class="session-title">S&P2: Security and Privacy in AI and ML</div>
+                <div class="session-room">Megalith 3</div>
+                <div class="session-chair">Chair: Shahid Raza, University of Glasgow</div>
+                <div class="session-papers">
+                    <div class="paper-item">Securing Data Privacy in Federated Learning</div>
+                    <div class="paper-item">PDSL: Privacy-Preserved Decentralized Learning</div>
+                    <div class="paper-item">Physical Backdoor Attacks against mmWave HAR</div>
+                    <div class="paper-item">Attributing ChatGPT-Transformed Synthetic Code</div>
+                </div>
+            </div>
+            <div class="session-card">
+                <div class="session-title">FT1: Resilience in Distributed Learning</div>
+                <div class="session-room">Finnieston</div>
+                <div class="session-chair">Chair: Yu Liu, Hong Kong Polytechnic University</div>
+                <div class="session-papers">
+                    <div class="paper-item">RAPIDSCRIBE: Bandwidth-aware Parallel Snapshots</div>
+                    <div class="paper-item">ECCheck: Enhancing In-Memory Checkpoint</div>
+                    <div class="paper-item">Exploring Dangerous Graphs with Byzantine Companions</div>
+                    <div class="paper-item">Bandwidth Optimized Scalable Designs for MPI Broadcast</div>
+                </div>
+            </div>
+            <div class="session-card">
+                <div class="session-title">Industry 1</div>
+                <div class="session-room">Room 4</div>
+                <div class="session-chair">Chair: Jordi Vilaplana-Mayoral, University of Lleida</div>
+                <div class="industry-keynote-label">Industry Keynote 1: Mohamed Eldessouki</div>
+                <div class="session-papers">
+                    <div class="paper-item">Name-based Quality for Name-based Networks</div>
+                    <div class="paper-item">Edge-First Language Model Inference</div>
+                    <div class="paper-item">Optimizing Telco Networks with Foundation Models</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- After Tuesday Morning Session (10:30–12:00) -->
+    <div class="slide break-slide">
+        <div class="slide-header">
+            <div class="header-left">
+                <div class="logo-placeholder"><img src="logo.png" alt="ICDCS 2025 Logo" style="width: 140px; height: 140px; object-fit: contain;"></div>
+                <div class="conference-info">
+                    <div class="conference-title">ICDCS 2025</div>
+                    <div class="conference-location">Glasgow, UK</div>
+                </div>
+            </div>
+            <div class="slide-date">Tuesday, 22 July</div>
+        </div>
+        <div class="slide-main">
+            <div class="break-title">Lunch Break</div>
+            <div class="break-time">12:00-13:15</div>
+            <div style="font-size: 1.6em; color: #B8E6E1;">Please enjoy lunch</div>
+        </div>
+    </div>
+
+    <!-- Slide 16: Tuesday Afternoon Session 1 -->
+    <div class="slide main-conference">
+    <div class="slide-header">
+        <div class="header-left">
+            <div class="logo-placeholder"><img src="logo.png" alt="ICDCS 2025 Logo" style="width: 140px; height: 140px; object-fit: contain;"></div>
+            <div class="conference-info">
+                <div class="conference-title">ICDCS 2025</div>
+                <div class="conference-location">Glasgow, UK</div>
+            </div>
+        </div>
+        <div class="slide-date">Tuesday, 22 July</div>
+    </div>
+    <div class="slide-main">
+        <div class="current-time">13:15-14:45</div>
+        <div class="session-type">Technical Afternoon Sessions 1</div>
+        <div class="sessions-container">
+            <div class="session-card">
+                <div class="session-title">DS4AI/ML 3: Privacy-preserving and Sustainable AI</div>
+                <div class="session-room">Megalith 2</div>
+                <div class="session-chair">Chair: Cong Wang, Zhejiang University</div>
+                <div class="session-papers">
+                    <div class="paper-item">FedLTH: Privacy-preserving Federated Learning with Model Pruning</div>
+                    <div class="paper-item">Carbon-Neutralizing Edge AI Inference</div>
+                    <div class="paper-item">PARDON: Privacy-Aware Robust Domain Generalization</div>
+                    <div class="paper-item">ACME: Adaptive Customization of Large Models</div>
+                </div>
+            </div>
+            <div class="session-card">
+                <div class="session-title">BC&DB 3: Cross-chain and Scalability</div>
+                <div class="session-room">Megalith 3</div>
+                <div class="session-chair">Chair: Thomas Locher, DFINITY Foundation</div>
+                <div class="session-papers">
+                    <div class="paper-item">Tombolo: Decentralized Interconnected Blockchain</div>
+                    <div class="paper-item">Fully Decentralized Collection of Attestations</div>
+                    <div class="paper-item">Generic Framework for Cross-Chain Atomic Swaps</div>
+                    <div class="paper-item">Novel Reputation-based Sharding Blockchain System</div>
+                </div>
+            </div>
+            <div class="session-card">
+                <div class="session-title">Cloud 2: Reliable and Secure State Management</div>
+                <div class="session-room">Finnieston</div>
+                <div class="session-chair">Chair: Patrizio Dazzi, University of Pisa</div>
+                <div class="session-papers">
+                    <div class="paper-item">SGX-Enabled Encrypted Cross-Cloud Data Sync</div>
+                    <div class="paper-item">Practical Considerations for State Machine Replication</div>
+                    <div class="paper-item">Spacker: Unified State Migration for Streaming</div>
+                    <div class="paper-item">Asynchronous BFT Consensus Made Wireless</div>
+                </div>
+            </div>
+            <div class="session-card">
+                <div class="session-title">Industry 2</div>
+                <div class="session-room">Room 4</div>
+                <div class="session-chair">Chair: Kostas Kolomvatsos, University of Thessaly</div>
+                <div class="session-papers">
+                    <div class="paper-item">Incremental Learning Detection in Energy Markets</div>
+                    <div class="paper-item">Distributed Quantum Bit-Phase-Flip Error Correction</div>
+                    <div class="paper-item">D-MGN: Distributed Mesh Graph Neural Network</div>
+                    <div class="paper-item">Distributed Log-driven Anomaly Detection System</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- After Tuesday Afternoon Session 1 -->
+    <div class="slide break-slide">
+        <div class="slide-header">
+            <div class="header-left">
+                <div class="logo-placeholder"><img src="logo.png" alt="ICDCS 2025 Logo" style="width: 140px; height: 140px; object-fit: contain;"></div>
+                <div class="conference-info">
+                    <div class="conference-title">ICDCS 2025</div>
+                    <div class="conference-location">Glasgow, UK</div>
+                </div>
+            </div>
+            <div class="slide-date">Tuesday, 22 July</div>
+        </div>
+        <div class="slide-main">
+            <div class="break-title">Coffee Break</div>
+            <div class="break-time">14:45-15:15</div>
+            <div style="font-size: 1.6em; color: #B8E6E1;">Please enjoy refreshments in the foyer</div>
+        </div>
+    </div>
+
+    <!-- Slide 17: Posters & Demonstrations -->
+    <div class="slide break-slide">
+    <div class="slide-header">
+        <div class="header-left">
+            <div class="logo-placeholder"><img src="logo.png" alt="ICDCS 2025 Logo" style="width: 140px; height: 140px; object-fit: contain;"></div>
+            <div class="conference-info">
+                <div class="conference-title">ICDCS 2025</div>
+                <div class="conference-location">Glasgow, UK</div>
+            </div>
+        </div>
+        <div class="slide-date">Tuesday, 22 July</div>
+    </div>
+    <div class="slide-main">
+        <div class="break-title">Posters & Demonstrations</div>
+        <div class="break-time">15:15-16:45</div>
+        <div style="font-size: 1.6em; color: #B8E6E1;">Megalith 1</div>
+    </div>
+    </div>
+
+    <!-- After Tuesday Posters & Demonstrations -->
+    <div class="slide break-slide">
+        <div class="slide-header">
+            <div class="header-left">
+                <div class="logo-placeholder"><img src="logo.png" alt="ICDCS 2025 Logo" style="width: 140px; height: 140px; object-fit: contain;"></div>
+                <div class="conference-info">
+                    <div class="conference-title">ICDCS 2025</div>
+                    <div class="conference-location">Glasgow, UK</div>
+                </div>
+            </div>
+            <div class="slide-date">Tuesday, 22 July</div>
+        </div>
+        <div class="slide-main">
+            <div class="break-title">Short Break</div>
+            <div class="break-time">16:45-17:00</div>
+            <div style="font-size: 1.6em; color: #B8E6E1;">Please enjoy a short break</div>
+        </div>
+    </div>
+
+    <!-- Slide 18: Tuesday Afternoon Session 2 -->
+    <div class="slide main-conference">
+    <div class="slide-header">
+        <div class="header-left">
+            <div class="logo-placeholder"><img src="logo.png" alt="ICDCS 2025 Logo" style="width: 140px; height: 140px; object-fit: contain;"></div>
+            <div class="conference-info">
+                <div class="conference-title">ICDCS 2025</div>
+                <div class="conference-location">Glasgow, UK</div>
+            </div>
+        </div>
+        <div class="slide-date">Tuesday, 22 July</div>
+    </div>
+    <div class="slide-main">
+        <div class="current-time">17:00-18:30</div>
+        <div class="session-type">Technical Afternoon Sessions 2</div>
+        <div class="sessions-container">
+            <div class="session-card">
+                <div class="session-title">IoT&CPS 2: Intelligent Computing and Sensing</div>
+                <div class="session-room">Megalith 2</div>
+                <div class="session-chair">Chair: Stefanie Roos, University of Kaiserslautern-Landau</div>
+                <div class="session-papers">
+                    <div class="paper-item">Sdser: Online Deployment of Dynamic DAG Functions</div>
+                    <div class="paper-item">BaroAuth: Ear Canal Deformation Authentication</div>
+                    <div class="paper-item">TSAJS: Efficient Multi-Server Joint Task Scheduling</div>
+                    <div class="paper-item">Towards Visual-Inertial Integration</div>
+                </div>
+            </div>
+            <div class="session-card">
+                <div class="session-title">Edge 2: Edge Intelligence and Distributed Computing</div>
+                <div class="session-room">Megalith 3</div>
+                <div class="session-chair">Chair: Tao Li, Purdue University</div>
+                <div class="session-papers">
+                    <div class="paper-item">Hierarchical Task Offloading in Satellite Edge</div>
+                    <div class="paper-item">HERACLES: Hierarchical Semantic Communications</div>
+                    <div class="paper-item">Optimizing WebAssembly Garbage Collection in Go</div>
+                    <div class="paper-item">Efficient Partitioning Vision Transformer on Edge</div>
+                </div>
+            </div>
+            <div class="session-card">
+                <div class="session-title">Industry 3</div>
+                <div class="session-room">Room 4</div>
+                <div class="session-chair">Chair: Athanasios Tziouvaras, University of Thessaly</div>
+                <div class="session-papers">
+                    <div class="paper-item">Leveraging FL for Decentralized Representation Learning</div>
+                    <div class="paper-item">AutoFairML: Automated Middleware for Fairness Auditing</div>
+                    <div class="paper-item">TS-V2X: Trust-Based Safety V2X Middleware</div>
+                    <div class="paper-item">Unearthing Silent Data: Process Design</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- Slide 19: Banquet -->
+    <div class="slide break-slide">
+    <div class="slide-header">
+        <div class="header-left">
+            <div class="logo-placeholder"><img src="logo.png" alt="ICDCS 2025 Logo" style="width: 140px; height: 140px; object-fit: contain;"></div>
+            <div class="conference-info">
+                <div class="conference-title">ICDCS 2025</div>
+                <div class="conference-location">Glasgow, UK</div>
+            </div>
+        </div>
+        <div class="slide-date">Tuesday, 22 July</div>
+    </div>
+    <div class="slide-main">
+        <div class="break-title">Conference Banquet</div>
+        <div class="break-time">19:00</div>
+        <div style="font-size: 1.6em; color: #B8E6E1;">Crowne Plaza</div>
+    </div>
+    </div>
+
+    <!-- Slide 20: Wednesday Keynote -->
+    <div class="slide break-slide keynote-slide">
+    <div class="slide-header">
+        <div class="header-left">
+            <div class="logo-placeholder"><img src="logo.png" alt="ICDCS 2025 Logo" style="width: 140px; height: 140px; object-fit: contain;"></div>
+            <div class="conference-info">
+                <div class="conference-title">ICDCS 2025</div>
+                <div class="conference-location">Glasgow, UK</div>
+            </div>
+        </div>
+        <div class="slide-date">Wednesday, 23 July</div>
+    </div>
+    <div class="slide-main">
+        <div class="break-title">Keynote 3</div>
+        <div class="keynote-speaker">Peter Pietzuch</div>
+        <div class="break-time">09:00-10:00</div>
+        <div class="session-room" style="font-size: 1.6em; color: #B8E6E1;">Megalith 2 & 3</div>
+    </div>
+    </div>
+
+    <!-- After Wednesday Keynote (09:00–10:00) -->
+    <div class="slide break-slide">
+        <div class="slide-header">
+            <div class="header-left">
+                <div class="logo-placeholder"><img src="logo.png" alt="ICDCS 2025 Logo" style="width: 140px; height: 140px; object-fit: contain;"></div>
+                <div class="conference-info">
+                    <div class="conference-title">ICDCS 2025</div>
+                    <div class="conference-location">Glasgow, UK</div>
+                </div>
+            </div>
+            <div class="slide-date">Wednesday, 23 July</div>
+        </div>
+        <div class="slide-main">
+            <div class="break-title">Coffee Break</div>
+            <div class="break-time">10:00-10:30</div>
+            <div style="font-size: 1.6em; color: #B8E6E1;">Please enjoy refreshments in the foyer</div>
+        </div>
+    </div>
+
+    <!-- Slide 21: Wednesday Morning Sessions -->
+    <div class="slide main-conference">
+    <div class="slide-header">
+        <div class="header-left">
+            <div class="logo-placeholder"><img src="logo.png" alt="ICDCS 2025 Logo" style="width: 140px; height: 140px; object-fit: contain;"></div>
+            <div class="conference-info">
+                <div class="conference-title">ICDCS 2025</div>
+                <div class="conference-location">Glasgow, UK</div>
+            </div>
+        </div>
+        <div class="slide-date">Wednesday, 23 July</div>
+    </div>
+    <div class="slide-main">
+        <div class="current-time">10:30-12:00</div>
+        <div class="session-type">Technical Morning Sessions 1</div>
+        <div class="sessions-container">
+            <div class="session-card">
+                <div class="session-title">DS4AI/ML 4: Collaborative and Efficient Deep Learning</div>
+                <div class="session-room">Megalith 2</div>
+                <div class="session-chair">Chair: Chul-Ho Lee, Texas State University</div>
+                <div class="session-papers">
+                    <div class="paper-item">Distributed DNN-based Video Analytics</div>
+                    <div class="paper-item">Rehearsal-free Federated Domain-incremental Learning</div>
+                    <div class="paper-item">Enhancing In-network Aggregation</div>
+                    <div class="paper-item">Efficient Joint Communication for SNN Simulation</div>
+                </div>
+            </div>
+            <div class="session-card">
+                <div class="session-title">S&P3: Secure and Privacy-Preserving in FL</div>
+                <div class="session-room">Megalith 3</div>
+                <div class="session-chair">Chair: Ilir Murturi, TU Wien</div>
+                <div class="session-papers">
+                    <div class="paper-item">Lightweight Secure Aggregation Protocol for FL</div>
+                    <div class="paper-item">IB-SC: Simplify Key Management for Path Validation</div>
+                    <div class="paper-item">FLdetox: Detoxify Persistent Backdoors in FL</div>
+                    <div class="paper-item">PP-FCL: Privacy-Preserving Federated Continual Learning</div>
+                </div>
+            </div>
+            <div class="session-card">
+                <div class="session-title">Alg1: Consensus and Coordination</div>
+                <div class="session-room">Finnieston</div>
+                <div class="session-chair">Chair: Aleksey Charapko, University of New Hampshire</div>
+                <div class="session-papers">
+                    <div class="paper-item">Shared Memory Consensus: Epigenetic Consensus</div>
+                    <div class="paper-item">Skip Hash: Fast Ordered Map Via STM</div>
+                    <div class="paper-item">Efficient Deterministic Distributed Computing</div>
+                    <div class="paper-item">TOB-SVD: Total-Order Broadcast in Sleepy Model</div>
+                </div>
+            </div>
+            <div class="session-card">
+                <div class="session-title">Industry 4</div>
+                <div class="session-room">Room 4</div>
+                <div class="session-chair">Chair: Jordi Mateo-Fornes, University of Lleida</div>
+                <div class="industry-keynote-label">Industry Keynote 2: Raúl Gracia</div>
+                <div class="session-papers">
+                    <div class="paper-item">Monte Carlo Tree Search for Safe Decision Making</div>
+                    <div class="paper-item">Bringing Serverless Functions to Citizen Science</div>
+                    <div class="paper-item">GUIDE: GNN-based Incident Detection</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- After Wednesday Morning Session (10:30–12:00) -->
+    <div class="slide break-slide">
+        <div class="slide-header">
+            <div class="header-left">
+                <div class="logo-placeholder"><img src="logo.png" alt="ICDCS 2025 Logo" style="width: 140px; height: 140px; object-fit: contain;"></div>
+                <div class="conference-info">
+                    <div class="conference-title">ICDCS 2025</div>
+                    <div class="conference-location">Glasgow, UK</div>
+                </div>
+            </div>
+            <div class="slide-date">Wednesday, 23 July</div>
+        </div>
+        <div class="slide-main">
+            <div class="break-title">Lunch Break</div>
+            <div class="break-time">12:00-13:15</div>
+            <div style="font-size: 1.6em; color: #B8E6E1;">Please enjoy lunch</div>
+        </div>
+    </div>
+
+    <!-- Slide 22: Wednesday Afternoon Session 1 -->
+    <div class="slide main-conference">
+    <div class="slide-header">
+        <div class="header-left">
+            <div class="logo-placeholder"><img src="logo.png" alt="ICDCS 2025 Logo" style="width: 140px; height: 140px; object-fit: contain;"></div>
+            <div class="conference-info">
+                <div class="conference-title">ICDCS 2025</div>
+                <div class="conference-location">Glasgow, UK</div>
+            </div>
+        </div>
+        <div class="slide-date">Wednesday, 23 July</div>
+    </div>
+    <div class="slide-main">
+        <div class="current-time">13:15-14:45</div>
+        <div class="session-type">Technical Afternoon Sessions 1</div>
+        <div class="sessions-container">
+            <div class="session-card">
+                <div class="session-title">DS4AI/ML 5: Inference and Resource Management</div>
+                <div class="session-room">Megalith 2</div>
+                <div class="session-chair">Chair: JinYi Yoon, Virginia Tech</div>
+                <div class="session-papers">
+                    <div class="paper-item">Wainscot: Tailoring Model Parallelism to Device Memory</div>
+                    <div class="paper-item">Inferring Communities in Collaborative Learning</div>
+                    <div class="paper-item">Ripple: Scalable Incremental GNN Inferencing</div>
+                    <div class="paper-item">MCaM: Efficient LLM Inference with Multi-tier KV Cache</div>
+                </div>
+            </div>
+            <div class="session-card">
+                <div class="session-title">E&D 1: Smart Infrastructure and Resource Management</div>
+                <div class="session-room">Megalith 3</div>
+                <div class="session-chair">Chair: Chenwei Xie, Snowflake</div>
+                <div class="session-papers">
+                    <div class="paper-item">The Cloud, Like Building and Running Go Binaries</div>
+                    <div class="paper-item">Smart Blue Light Pole-based Real-Time Crowd Counting</div>
+                    <div class="paper-item">Space Booking: Performance-Critical Satellite Networks</div>
+                    <div class="paper-item">Elastic Scheduling for Mix-Flow in TSN</div>
+                </div>
+            </div>
+            <div class="session-card">
+                <div class="session-title">Mobile 1: Intelligent and Secure Mobile Computing</div>
+                <div class="session-room">Finnieston</div>
+                <div class="session-chair">Chair: Chen Qian, UC Santa Cruz</div>
+                <div class="session-papers">
+                    <div class="paper-item">Weighted Monitoring for Disaster Surveillance with UAV</div>
+                    <div class="paper-item">DiVE: Differential Video Encoding for Edge Analytics</div>
+                    <div class="paper-item">Partitioned Collaborative Inference for On-Device Models</div>
+                    <div class="paper-item">QuHE: Optimizing Utility-Cost in Quantum Networks</div>
+                </div>
+            </div>
+            <div class="session-card">
+                <div class="session-title">Industry 5</div>
+                <div class="session-room">Room 4</div>
+                <div class="session-chair">Chair: George Floros, University of Thessaly</div>
+                <div class="session-papers">
+                    <div class="paper-item">AI and Radar-Enhanced Audio-Visual Speech Recognition</div>
+                    <div class="paper-item">Snowpark: Performant, Secure Data Engineering</div>
+                    <div class="paper-item">Efficient Planner for Automated Driving on Ramps</div>
+                    <div class="paper-item">Adaptive Field Effect Planner for Safe Driving</div>
+                    <div class="paper-item">Correctness Proof for Ring-Learning Encryption</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- After Wednesday Afternoon Session 1 (13:15–14:45) -->
+    <div class="slide break-slide">
+        <div class="slide-header">
+            <div class="header-left">
+                <div class="logo-placeholder"><img src="logo.png" alt="ICDCS 2025 Logo" style="width: 140px; height: 140px; object-fit: contain;"></div>
+                <div class="conference-info">
+                    <div class="conference-title">ICDCS 2025</div>
+                    <div class="conference-location">Glasgow, UK</div>
+                </div>
+            </div>
+            <div class="slide-date">Wednesday, 23 July</div>
+        </div>
+        <div class="slide-main">
+            <div class="break-title">Coffee Break</div>
+            <div class="break-time">14:45-15:15</div>
+            <div style="font-size: 1.6em; color: #B8E6E1;">Please enjoy refreshments in the foyer</div>
+        </div>
+    </div>
+
+    <!-- Slide 23: Wednesday Final Sessions -->
+    <div class="slide main-conference">
+    <div class="slide-header">
+        <div class="header-left">
+            <div class="logo-placeholder"><img src="logo.png" alt="ICDCS 2025 Logo" style="width: 140px; height: 140px; object-fit: contain;"></div>
+            <div class="conference-info">
+                <div class="conference-title">ICDCS 2025</div>
+                <div class="conference-location">Glasgow, UK</div>
+            </div>
+        </div>
+        <div class="slide-date">Wednesday, 23 July</div>
+    </div>
+    <div class="slide-main">
+        <div class="current-time">15:15-16:45</div>
+        <div class="session-type">Final Technical Sessions</div>
+        <div class="sessions-container">
+            <div class="session-card">
+                <div class="session-title">AI/ML 3: Efficient and Secure Federated Learning</div>
+                <div class="session-room">Megalith 2</div>
+                <div class="session-chair">Chair: Jayaram Radhakrishnan, IBM Research</div>
+                <div class="session-papers">
+                    <div class="paper-item">Federated Learning with Workload Reduction</div>
+                    <div class="paper-item">FedSU: Communication-efficient Federated Learning</div>
+                    <div class="paper-item">Client-level Assessment of Collaborative Backdoor</div>
+                </div>
+            </div>
+            <div class="session-card">
+                <div class="session-title">E&D 2: Advanced Management and Execution</div>
+                <div class="session-room">Megalith 3</div>
+                <div class="session-chair">Chair: Probir Roy, University of Michigan Dearborn</div>
+                <div class="session-papers">
+                    <div class="paper-item">Hetero²Pipe: Pipelining Multi-DNN Inference</div>
+                    <div class="paper-item">Arsc: Automated Reconciliation for State Correctness</div>
+                    <div class="paper-item">Remote Gate Scheduling in Distributed Quantum</div>
+                    <div class="paper-item">CloudQC: Network-aware Framework for Quantum</div>
+                </div>
+            </div>
+            <div class="session-card">
+                <div class="session-title">Alg 2: Efficient and Resilient Coordination</div>
+                <div class="session-room">Finnieston</div>
+                <div class="session-chair">Chair: Tomasz Jurdzinski, University of Wroclaw</div>
+                <div class="session-papers">
+                    <div class="paper-item">Fast Self-Stabilizing Ranking</div>
+                    <div class="paper-item">Complexity of Deterministic Distributed Wireless</div>
+                    <div class="paper-item">Failure-Aware Tasking for Teams of Drones</div>
+                    <div class="paper-item">Distributed Non-Duplicate Sampling</div>
+                </div>
+            </div>
+            <div class="session-card">
+                <div class="session-title">Industry 6</div>
+                <div class="session-room">Room 4</div>
+                <div class="session-chair">Chair: Kostas Kolomvatsos, University of Thessaly</div>
+                <div class="session-papers">
+                    <div class="paper-item">Performance of Confidential Computing GPUs</div>
+                    <div class="paper-item">Optimized Data Transfer for Wildfire Management</div>
+                    <div class="paper-item">Scheduling Inference Workloads with RL</div>
+                    <div class="paper-item">Reconfiguration of Applications in Cloud-Edge</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- Slide 24: Conference End -->
+    <div class="slide break-slide">
+    <div class="slide-header">
+        <div class="header-left">
+            <div class="logo-placeholder"><img src="logo.png" alt="ICDCS 2025 Logo" style="width: 140px; height: 140px; object-fit: contain;"></div>
+            <div class="conference-info">
+                <div class="conference-title">ICDCS 2025</div>
+                <div class="conference-location">Glasgow, UK</div>
+            </div>
+        </div>
+        <div class="slide-date">Wednesday, 23 July</div>
+    </div>
+    <div class="slide-main">
+        <div class="break-title">Conference Closing</div>
+        <div class="break-time">16:45-17:15</div>
+        <div style="font-size: 1.6em; color: #B8E6E1; margin-top: 30px;">Thank you for attending ICDCS 2025!</div>
+        <div style="font-size: 1.2em; color: #8BC4BD; margin-top: 20px;">Civic Reception at Glasgow City Chambers - 19:00</div>
+    </div>
+    </div>
+
+    <div class="qr-link">
+        <img src="qr.jpg" alt="QR Code">
+        <span>See the full program here</span>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        let autoAdvanceEnabled = false;
+        let testMode = false;
+        let testDateTime = null;
+        let autoAdvanceInterval = null;
+
+        // Schedule mapping: date -> [time, slideIndex]
+        const schedule = [
+            // Sunday, July 20
+            ['2025-07-20', '09:00', 0],  // Workshops Morning 1
+            ['2025-07-20', '10:30', 1],  // Coffee Break
+            ['2025-07-20', '11:00', 2],  // Workshops Morning 2
+            ['2025-07-20', '12:30', 3],  // Lunch Break
+            ['2025-07-20', '13:45', 4],  // Workshops Afternoon 1
+            ['2025-07-20', '15:15', 5],  // Coffee Break
+            ['2025-07-20', '15:45', 6],  // Workshops Afternoon 2
+            ['2025-07-20', '19:00', 7],  // Welcome Reception
+            
+            // Monday, July 21
+            ['2025-07-21', '08:30', 8],  // Opening & Keynote 1
+            ['2025-07-21', '10:00', 9],  // Coffee Break
+            ['2025-07-21', '10:30', 10], // Technical Morning 1
+            ['2025-07-21', '12:00', 11], // Lunch Break
+            ['2025-07-21', '13:15', 12], // Technical Afternoon 1
+            ['2025-07-21', '14:45', 13], // Coffee Break
+            ['2025-07-21', '15:15', 14], // Technical Afternoon 2
+            ['2025-07-21', '17:00', 15], // WiDCS Event
+            
+            // Tuesday, July 22
+            ['2025-07-22', '09:00', 16], // Keynote 2
+            ['2025-07-22', '10:00', 17], // Coffee Break
+            ['2025-07-22', '10:30', 18], // Technical + Industry Morning
+            ['2025-07-22', '12:00', 19], // Lunch Break
+            ['2025-07-22', '13:15', 20], // Technical Afternoon 1
+            ['2025-07-22', '14:45', 21], // Coffee Break
+            ['2025-07-22', '15:15', 22], // Posters & Demonstrations
+            ['2025-07-22', '16:45', 23], // Short Break
+            ['2025-07-22', '17:00', 24], // Technical Afternoon 2
+            ['2025-07-22', '19:00', 25], // Banquet
+            
+            // Wednesday, July 23
+            ['2025-07-23', '09:00', 26], // Keynote 3
+            ['2025-07-23', '10:00', 27], // Coffee Break
+            ['2025-07-23', '10:30', 28], // Technical Morning 1
+            ['2025-07-23', '12:00', 29], // Lunch Break
+            ['2025-07-23', '13:15', 30], // Technical Afternoon 1
+            ['2025-07-23', '14:45', 31], // Coffee Break
+            ['2025-07-23', '15:15', 32], // Final Technical Sessions
+            ['2025-07-23', '16:45', 33], // Conference Closing
+        ];
+
+        function getCurrentTime() {
+            if (testMode && testDateTime) {
+                return testDateTime;
+            }
+            return new Date();
+        }
+
+        function formatTime(date) {
+            return date.toLocaleTimeString('en-GB', { 
+                hour: '2-digit', 
+                minute: '2-digit',
+                second: '2-digit'
+            });
+        }
+
+        function formatDate(date) {
+            return date.toLocaleDateString('en-CA'); // YYYY-MM-DD format
+        }
+
+        function timeToMinutes(timeStr) {
+            const [hours, minutes] = timeStr.split(':').map(Number);
+            return hours * 60 + minutes;
+        }
+
+        function getCurrentSlideIndex() {
+            const now = getCurrentTime();
+            const currentDate = formatDate(now);
+            const currentTimeMinutes = now.getHours() * 60 + now.getMinutes();
+
+            // Find the appropriate slide for current time
+            let bestSlide = 0;
+            
+            for (let i = 0; i < schedule.length; i++) {
+                const [scheduleDate, scheduleTime, slideIndex] = schedule[i];
+                
+                if (scheduleDate === currentDate) {
+                    const scheduleTimeMinutes = timeToMinutes(scheduleTime);
+                    
+                    if (currentTimeMinutes >= scheduleTimeMinutes) {
+                        bestSlide = slideIndex;
+                    } else {
+                        break;
+                    }
+                } else if (scheduleDate < currentDate) {
+                    bestSlide = slideIndex;
+                } else {
+                    break;
+                }
+            }
+
+            return bestSlide;
+        }
+
+        function showSlide(n) {
+            // Hide all slides first
+            slides.forEach(slide => {
+                slide.style.display = 'none';
+            });
+
+            // Show the current slide
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].style.display = 'block';
+
+            updateSlideInfo();
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        function updateSlideInfo() {
+            const slideInfo = document.getElementById('slideInfo');
+            slideInfo.textContent = `Slide ${currentSlide + 1} of ${totalSlides}`;
+        }
+
+        function updateCurrentTime() {
+            const currentTimeDisplay = document.getElementById('currentTimeDisplay');
+            const now = getCurrentTime();
+            currentTimeDisplay.textContent = `Current Time: ${formatTime(now)}`;
+            
+            if (testMode) {
+                currentTimeDisplay.textContent += ' (TEST MODE)';
+            }
+        }
+
+        function checkAutoAdvance() {
+            if (!autoAdvanceEnabled) return;
+            
+            const targetSlide = getCurrentSlideIndex();
+            if (targetSlide !== currentSlide) {
+                showSlide(targetSlide);
+            }
+        }
+
+        function toggleAutoAdvance() {
+            const toggleButton = document.getElementById('toggleAuto');
+            const autoStatus = document.getElementById('autoStatus');
+            
+            autoAdvanceEnabled = !autoAdvanceEnabled;
+            
+            if (autoAdvanceEnabled) {
+                toggleButton.textContent = 'Disable Auto-Advance';
+                autoStatus.textContent = 'Auto-Advance: ENABLED';
+                autoStatus.className = 'auto-status enabled';
+                
+                // Immediately check and update slide
+                checkAutoAdvance();
+                
+                // Set up interval to check every 1 seconds
+                autoAdvanceInterval = setInterval(checkAutoAdvance, 1000);
+            } else {
+                toggleButton.textContent = 'Enable Auto-Advance';
+                autoStatus.textContent = 'Auto-Advance: DISABLED';
+                autoStatus.className = 'auto-status disabled';
+                
+                if (autoAdvanceInterval) {
+                    clearInterval(autoAdvanceInterval);
+                    autoAdvanceInterval = null;
+                }
+            }
+        }
+
+        function applyTestTime() {
+            const testDateSelect = document.getElementById('testDate');
+            const testTimeInput = document.getElementById('testTime');
+            
+            if (testDateSelect.value && testTimeInput.value) {
+                const dateStr = testDateSelect.value;
+                const timeStr = testTimeInput.value;
+                
+                testDateTime = new Date(`${dateStr}T${timeStr}:00`);
+                testMode = true;
+                
+                console.log('Test mode enabled:', testDateTime);
+                updateCurrentTime();
+                
+                if (autoAdvanceEnabled) {
+                    checkAutoAdvance();
+                }
+            } else {
+                alert('Please select both test date and time');
+            }
+        }
+
+        function clearTestTime() {
+            testMode = false;
+            testDateTime = null;
+            
+            console.log('Test mode disabled');
+            updateCurrentTime();
+            
+            if (autoAdvanceEnabled) {
+                checkAutoAdvance();
+            }
+        }
+
+        function hidePanel() {
+            const controlPanel = document.getElementById('controlPanel');
+            const showButton = document.getElementById('showPanel');
+            
+            controlPanel.classList.add('hidden');
+            showButton.classList.remove('hidden');
+        }
+
+        function showPanel() {
+            const controlPanel = document.getElementById('controlPanel');
+            const showButton = document.getElementById('showPanel');
+            
+            controlPanel.classList.remove('hidden');
+            showButton.classList.add('hidden');
+        }
+
+        // Event listeners
+        document.getElementById('toggleAuto').addEventListener('click', toggleAutoAdvance);
+        document.getElementById('applyTestTime').addEventListener('click', applyTestTime);
+        document.getElementById('clearTestTime').addEventListener('click', clearTestTime);
+        document.getElementById('hidePanel').addEventListener('click', hidePanel);
+        document.getElementById('showPanel').addEventListener('click', showPanel);
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                previousSlide();
+            } else if (e.key === 'a' || e.key === 'A') {
+                toggleAutoAdvance();
+            } else if (e.key === 'h' || e.key === 'H') {
+                const panel = document.getElementById('controlPanel');
+                if (panel.classList.contains('hidden')) {
+                    showPanel();
+                } else {
+                    hidePanel();
+                }
+            }
+        });
+
+        // Initialize
+        showSlide(0);
+        updateCurrentTime();
+        
+        // Update time display every second
+        setInterval(updateCurrentTime, 1000);
+        
+        console.log('ICDCS 2025 Auto-Advance Slides loaded');
+        console.log('Controls: Arrow keys or space for manual navigation');
+        console.log('Press "A" to toggle auto-advance, "H" to hide/show controls');
+        console.log('Total slides:', totalSlides);
+    </script>
+</body>
+</html>
