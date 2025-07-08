@@ -80,7 +80,7 @@
         }
 
         .current-time {
-            font-size: 2.6em;
+            font-size: 3.6em;
             font-weight: bold;
             color: #F6BC34;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
@@ -208,7 +208,7 @@
             border-radius: 25px;
             text-decoration: none;
             color: #B8E6E1;
-            font-size: 14px;
+            font-size: 24px;
             font-weight: 600;
             transition: background 0.3s ease;
             z-index: 1000;
@@ -222,6 +222,41 @@
             width: 160px;
             height: 160px;
             object-fit: contain;
+        }
+
+        .wifi-info {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(3, 93, 81, 0.9);
+            border: 2px solid #F6BC34;
+            padding: 12px 16px;
+            border-radius: 25px;
+            color: #B8E6E1;
+            font-size: 24px;
+            font-weight: 600;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .wifi-info img {
+            width: 160px;
+            height: 160px;
+            object-fit: contain;
+        }
+
+        .wifi-details {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .wifi-title {
+            color: #F6BC34;
+            font-size: 26px;
+            font-weight: bold;
         }
 
         .break-slide {
@@ -380,8 +415,9 @@
 
         .slide-info {
             position: fixed;
-            bottom: 20px;
-            left: 20px;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
             background: rgba(3, 93, 81, 0.9);
             border: 2px solid #F6BC34;
             padding: 10px 15px;
@@ -402,17 +438,17 @@
         <h3>Slide Control</h3>
         <div class="current-time-display" id="currentTimeDisplay"></div>
         <div class="auto-status" id="autoStatus">Auto-Advance: DISABLED</div>
-        
+
         <button id="toggleAuto">Enable Auto-Advance</button>
         <button id="hidePanel">Hide Panel</button>
         <br>
-        
+
         <button onclick="previousSlide()">◀ Previous</button>
         <button onclick="nextSlide()">Next ▶</button>
-        
+
         <div class="test-mode">
             <h4>Test Mode</h4>
-            <label>Test Date: 
+            <label>Test Date:
                 <select id="testDate">
                     <option value="">Use Current Time</option>
                     <option value="2025-07-20">Sunday, July 20</option>
@@ -422,7 +458,7 @@
                 </select>
             </label>
             <br>
-            <label>Test Time: 
+            <label>Test Time:
                 <input type="time" id="testTime" />
             </label>
             <br>
@@ -464,12 +500,12 @@
                 </div>
                 <div class="session-card tight">
                     <div class="session-title tight">T5: AI-Native Joint Communication</div>
-                    <div class="session-room tight">Room 1</div>
+                    <div class="session-room tight">Room 2</div>
                     <div style="font-size: 1.1em; color: #B8E6E1;">6G Networks and Beyond</div>
                 </div>
                 <div class="session-card tight">
                     <div class="session-title tight">T6: Network Simulation Bridge</div>
-                    <div class="session-room tight">Room 2</div>
+                    <div class="session-room tight">Room 1</div>
                     <div style="font-size: 1.1em; color: #B8E6E1;">Bridging Distributed Applications</div>
                 </div>
                 <div class="session-card tight">
@@ -558,12 +594,12 @@
                 </div>
                 <div class="session-card tight">
                     <div class="session-title tight">T5: AI-Native Joint Communication</div>
-                    <div class="session-room tight">Room 1</div>
+                    <div class="session-room tight">Room 2</div>
                     <div style="font-size: 1.1em; color: #B8E6E1;">6G Networks and Beyond (Continued)</div>
                 </div>
                 <div class="session-card tight">
                     <div class="session-title tight">T6: Network Simulation Bridge</div>
-                    <div class="session-room tight">Room 2</div>
+                    <div class="session-room tight">Room 1</div>
                     <div style="font-size: 1.1em; color: #B8E6E1;">Bridging Distributed Applications (Continued)</div>
                 </div>
                 <div class="session-card tight">
@@ -652,12 +688,12 @@
                 </div>
                 <div class="session-card tight">
                     <div class="session-title tight">T4: Trustworthiness and Consensus</div>
-                    <div class="session-room tight">Room 1</div>
+                    <div class="session-room tight">Room 2</div>
                     <div style="font-size: 1.1em; color: #B8E6E1;">Distributed and Connected Autonomous Systems</div>
                 </div>
                 <div class="session-card tight">
                     <div class="session-title tight">T7: Redefining Telecommunications</div>
-                    <div class="session-room tight">Room 2</div>
+                    <div class="session-room tight">Room 1</div>
                     <div style="font-size: 1.1em; color: #B8E6E1;">Data Engineering and Blockchain for B5G/6G</div>
                 </div>
                 <div class="session-card tight">
@@ -741,12 +777,12 @@
                 </div>
                 <div class="session-card tight">
                     <div class="session-title tight">T4: Trustworthiness and Consensus</div>
-                    <div class="session-room tight">Room 1</div>
+                    <div class="session-room tight">Room 2</div>
                     <div style="font-size: 1.1em; color: #B8E6E1;">Distributed and Connected Autonomous Systems (Continued)</div>
                 </div>
                 <div class="session-card tight">
                     <div class="session-title tight">T7: Redefining Telecommunications</div>
-                    <div class="session-room tight">Room 2</div>
+                    <div class="session-room tight">Room 1</div>
                     <div style="font-size: 1.1em; color: #B8E6E1;">Data Engineering and Blockchain for B5G/6G (Continued)</div>
                 </div>
                 <div class="session-card tight">
@@ -1372,7 +1408,7 @@
     </div>
     <div class="slide-main">
         <div class="break-title">Conference Banquet</div>
-        <div class="break-time">19:15</div>
+        <div class="break-time">19:00</div>
         <div style="font-size: 1.6em; color: #B8E6E1;">Crowne Plaza</div>
     </div>
     </div>
@@ -1666,9 +1702,18 @@
     </div>
     </div>
 
+    <div class="wifi-info">
+        <img src="wifi.jpg" alt="WiFi QR Code">
+        <div class="wifi-details">
+            <div class="wifi-title">Conference WiFi</div>
+            <div>SSID: ICDCS2025</div>
+            <div>PWD: Glasgow2025!</div>
+        </div>
+    </div>
+
     <div class="qr-link">
+        <span>See the full<br> program<br> here:</span>
         <img src="qr.jpg" alt="QR Code">
-        <span>See the full program here</span>
     </div>
 
     <script>
@@ -1691,7 +1736,7 @@
             ['2025-07-20', '15:15', 5],  // Coffee Break
             ['2025-07-20', '15:45', 6],  // Workshops Afternoon 2
             ['2025-07-20', '19:00', 7],  // Welcome Reception
-            
+
             // Monday, July 21
             ['2025-07-21', '08:30', 8],  // Opening & Keynote 1
             ['2025-07-21', '10:00', 9],  // Coffee Break
@@ -1701,7 +1746,7 @@
             ['2025-07-21', '14:45', 13], // Coffee Break
             ['2025-07-21', '15:15', 14], // Technical Afternoon 2
             ['2025-07-21', '17:00', 15], // WiDCS Event
-            
+
             // Tuesday, July 22
             ['2025-07-22', '09:00', 16], // Keynote 2
             ['2025-07-22', '10:00', 17], // Coffee Break
@@ -1712,8 +1757,8 @@
             ['2025-07-22', '15:15', 22], // Posters & Demonstrations
             ['2025-07-22', '16:45', 23], // Short Break
             ['2025-07-22', '17:00', 24], // Technical Afternoon 2
-            ['2025-07-22', '19:15', 25], // Banquet
-            
+            ['2025-07-22', '19:00', 25], // Banquet
+
             // Wednesday, July 23
             ['2025-07-23', '09:00', 26], // Keynote 3
             ['2025-07-23', '10:00', 27], // Coffee Break
@@ -1733,8 +1778,8 @@
         }
 
         function formatTime(date) {
-            return date.toLocaleTimeString('en-GB', { 
-                hour: '2-digit', 
+            return date.toLocaleTimeString('en-GB', {
+                hour: '2-digit',
                 minute: '2-digit',
                 second: '2-digit'
             });
@@ -1756,13 +1801,13 @@
 
             // Find the appropriate slide for current time
             let bestSlide = 0;
-            
+
             for (let i = 0; i < schedule.length; i++) {
                 const [scheduleDate, scheduleTime, slideIndex] = schedule[i];
-                
+
                 if (scheduleDate === currentDate) {
                     const scheduleTimeMinutes = timeToMinutes(scheduleTime);
-                    
+
                     if (currentTimeMinutes >= scheduleTimeMinutes) {
                         bestSlide = slideIndex;
                     } else {
@@ -1808,7 +1853,7 @@
             const currentTimeDisplay = document.getElementById('currentTimeDisplay');
             const now = getCurrentTime();
             currentTimeDisplay.textContent = `Current Time: ${formatTime(now)}`;
-            
+
             if (testMode) {
                 currentTimeDisplay.textContent += ' (TEST MODE)';
             }
@@ -1816,7 +1861,7 @@
 
         function checkAutoAdvance() {
             if (!autoAdvanceEnabled) return;
-            
+
             const targetSlide = getCurrentSlideIndex();
             if (targetSlide !== currentSlide) {
                 showSlide(targetSlide);
@@ -1826,17 +1871,17 @@
         function toggleAutoAdvance() {
             const toggleButton = document.getElementById('toggleAuto');
             const autoStatus = document.getElementById('autoStatus');
-            
+
             autoAdvanceEnabled = !autoAdvanceEnabled;
-            
+
             if (autoAdvanceEnabled) {
                 toggleButton.textContent = 'Disable Auto-Advance';
                 autoStatus.textContent = 'Auto-Advance: ENABLED';
                 autoStatus.className = 'auto-status enabled';
-                
+
                 // Immediately check and update slide
                 checkAutoAdvance();
-                
+
                 // Set up interval to check every 1 seconds
                 autoAdvanceInterval = setInterval(checkAutoAdvance, 1000);
             } else {
