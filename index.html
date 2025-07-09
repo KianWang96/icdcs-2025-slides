@@ -31,7 +31,7 @@
         .slide-header {
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: flex-start;
             margin-bottom: 25px;
             padding-bottom: 15px;
             border-bottom: 3px solid #F6BC34;
@@ -93,6 +93,23 @@
             text-align: center;
             margin-bottom: 25px;
             color: #B8E6E1;
+        }
+
+        .header-right-content {
+            text-align: right;
+        }
+
+        .header-right-content .current-time {
+            font-size: 2.2em;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+            margin-bottom: 5px;
+            text-align: right;
+        }
+
+        .header-right-content .session-type {
+            font-size: 1.2em;
+            text-align: right;
+            margin-bottom: 0;
         }
 
         .sessions-container {
@@ -433,7 +450,6 @@
     </style>
 </head>
 <body>
-    <!-- Control Panel -->
     <div class="control-panel" id="controlPanel">
         <h3>Slide Control</h3>
         <div class="current-time-display" id="currentTimeDisplay"></div>
@@ -467,17 +483,14 @@
         </div>
     </div>
 
-    <!-- Slide Info -->
     <div class="slide-info" id="slideInfo">
         Slide 1 of 34
     </div>
 
-    <!-- Show Panel Button (when hidden) -->
     <button id="showPanel" class="hidden" style="position: fixed; top: 20px; left: 20px; background: #F6BC34; color: #035D51; border: none; padding: 10px; border-radius: 8px; font-weight: bold; z-index: 1001; cursor: pointer;">
         Show Controls
     </button>
 
-    <!-- Slide 0: Sunday Morning Workshops/Tutorials -->
     <div class="slide active workshop-slide">
         <div class="slide-header">
             <div class="header-left">
@@ -487,11 +500,11 @@
                     <div class="conference-location">Glasgow, UK</div>
                 </div>
             </div>
-            <div class="slide-date">Sunday, 20 July</div>
+            <div class="header-right-content"><div class="slide-date">Sunday, 20 July</div><div class="current-time">09:00-10:30</div><div class="session-type">Workshops &amp; Tutorials (Morning Session 1)</div></div>
         </div>
         <div class="slide-main">
-            <div class="current-time">09:00-10:30</div>
-            <div class="session-type">Workshops & Tutorials (Morning Session 1)</div>
+            
+            
             <div class="sessions-container tight">
                 <div class="session-card tight">
                     <div class="session-title tight">T1: Federated Learning and Network Security</div>
@@ -552,7 +565,6 @@
         </div>
     </div>
 
-    <!-- Slide 1: Coffee Break -->
     <div class="slide break-slide">
         <div class="slide-header">
             <div class="header-left">
@@ -571,7 +583,6 @@
         </div>
     </div>
 
-    <!-- Slide 2: Sunday Morning Session 2 -->
     <div class="slide workshop-slide">
         <div class="slide-header">
             <div class="header-left">
@@ -581,11 +592,11 @@
                     <div class="conference-location">Glasgow, UK</div>
                 </div>
             </div>
-            <div class="slide-date">Sunday, 20 July</div>
+            <div class="header-right-content"><div class="slide-date">Sunday, 20 July</div><div class="current-time">11:00-12:30</div><div class="session-type">Workshops &amp; Tutorials (Morning Session 2)</div></div>
         </div>
         <div class="slide-main">
-            <div class="current-time">11:00-12:30</div>
-            <div class="session-type">Workshops & Tutorials (Morning Session 2)</div>
+            
+            
             <div class="sessions-container tight">
                 <div class="session-card tight">
                     <div class="session-title tight">T1: Federated Learning and Network Security</div>
@@ -646,7 +657,6 @@
         </div>
     </div>
 
-    <!-- Slide 3: Lunch Break -->
     <div class="slide break-slide">
         <div class="slide-header">
             <div class="header-left">
@@ -665,7 +675,6 @@
         </div>
     </div>
 
-    <!-- Slide 4: Sunday Afternoon Session 1 -->
     <div class="slide workshop-slide">
         <div class="slide-header">
             <div class="header-left">
@@ -675,11 +684,11 @@
                     <div class="conference-location">Glasgow, UK</div>
                 </div>
             </div>
-            <div class="slide-date">Sunday, 20 July</div>
+            <div class="header-right-content"><div class="slide-date">Sunday, 20 July</div><div class="current-time">13:45-15:15</div><div class="session-type">Workshops, Tutorials &amp; Doctoral Consortium</div></div>
         </div>
         <div class="slide-main">
-            <div class="current-time">13:45-15:15</div>
-            <div class="session-type">Workshops, Tutorials & Doctoral Consortium</div>
+            
+            
             <div class="sessions-container tight">
                 <div class="session-card tight">
                     <div class="session-title tight">T3: Serverless Orchestration</div>
@@ -704,7 +713,7 @@
                 <div class="session-card tight">
                     <div class="session-title tight">Doctoral Consortium</div>
                     <div class="session-room tight">Room 6</div>
-                    <div style="font-size: 1.1em; color: #B8E6E1;">Core Advances in Distributed AI & Federated Learning</div>
+                    <div style="font-size: 1.1em; color: #B8E6E1;">Core Advances in Distributed AI &amp; Federated Learning</div>
                 </div>
                 <div class="session-card tight">
                     <div class="session-title tight">FL4WEB Workshop</div>
@@ -735,7 +744,6 @@
         </div>
     </div>
 
-    <!-- Slide 5: Coffee Break Sunday Afternoon -->
     <div class="slide break-slide">
         <div class="slide-header">
             <div class="header-left">
@@ -754,7 +762,6 @@
         </div>
     </div>
 
-    <!-- Slide 6: Sunday Afternoon Session 2 -->
     <div class="slide workshop-slide">
         <div class="slide-header">
             <div class="header-left">
@@ -764,11 +771,11 @@
                     <div class="conference-location">Glasgow, UK</div>
                 </div>
             </div>
-            <div class="slide-date">Sunday, 20 July</div>
+            <div class="header-right-content"><div class="slide-date">Sunday, 20 July</div><div class="current-time">15:45-17:15</div><div class="session-type">Workshops, Tutorials &amp; Doctoral Consortium (Afternoon Session 2)</div></div>
         </div>
         <div class="slide-main">
-            <div class="current-time">15:45-17:15</div>
-            <div class="session-type">Workshops, Tutorials & Doctoral Consortium (Afternoon Session 2)</div>
+            
+            
             <div class="sessions-container tight">
                 <div class="session-card tight">
                     <div class="session-title tight">T3: Serverless Orchestration</div>
@@ -824,7 +831,6 @@
         </div>
     </div>
 
-    <!-- Slide 7: Welcome Reception -->
     <div class="slide break-slide">
     <div class="slide-header">
         <div class="header-left">
@@ -843,7 +849,6 @@
     </div>
     </div>
 
-    <!-- Slide 8: Monday Opening & Keynote -->
     <div class="slide break-slide keynote-slide">
     <div class="slide-header">
         <div class="header-left">
@@ -856,14 +861,13 @@
         <div class="slide-date">Monday, 21 July</div>
     </div>
     <div class="slide-main">
-        <div class="break-title">Opening Ceremony & Keynote 1</div>
+        <div class="break-title">Opening Ceremony &amp; Keynote 1</div>
         <div class="keynote-speaker">Peter Druschel</div>
         <div class="break-time">08:30-10:00</div>
-        <div class="session-room" style="font-size: 1.6em; color: #B8E6E1;">Megalith 2 & 3</div>
+        <div class="session-room" style="font-size: 1.6em; color: #B8E6E1;">Megalith 2 &amp; 3</div>
     </div>
     </div>
 
-    <!-- After Monday Keynote (08:30–10:00) -->
     <div class="slide break-slide">
         <div class="slide-header">
             <div class="header-left">
@@ -882,7 +886,6 @@
         </div>
     </div>
 
-    <!-- Slide 9: Monday Morning Technical Sessions -->
     <div class="slide main-conference">
         <div class="slide-header">
             <div class="header-left">
@@ -892,11 +895,11 @@
                     <div class="conference-location">Glasgow, UK</div>
                 </div>
             </div>
-            <div class="slide-date">Monday, 21 July</div>
+            <div class="header-right-content"><div class="slide-date">Monday, 21 July</div><div class="current-time">10:30-12:00</div><div class="session-type">Technical Morning Sessions 1</div></div>
         </div>
         <div class="slide-main">
-            <div class="current-time">10:30-12:00</div>
-            <div class="session-type">Technical Morning Sessions 1</div>
+            
+            
             <div class="sessions-container">
                 <div class="session-card">
                     <div class="session-title">AI/ML 1: Decentralized and Collaborative Learning</div>
@@ -921,7 +924,7 @@
                     </div>
                 </div>
                 <div class="session-card">
-                    <div class="session-title">BC&DB 1: Security and Fairness in Blockchain</div>
+                    <div class="session-title">BC&amp;DB 1: Security and Fairness in Blockchain</div>
                     <div class="session-room">Finnieston</div>
                     <div class="session-chair">Chair: Muoi Tran, Chalmers University</div>
                     <div class="session-papers">
@@ -935,7 +938,6 @@
         </div>
     </div>
 
-    <!-- After Monday Morning Session (10:30–12:00) -->
     <div class="slide break-slide">
         <div class="slide-header">
             <div class="header-left">
@@ -954,7 +956,6 @@
         </div>
     </div>
 
-    <!-- Slide 10: Monday Afternoon Session 1 -->
     <div class="slide main-conference">
     <div class="slide-header">
         <div class="header-left">
@@ -964,11 +965,11 @@
                 <div class="conference-location">Glasgow, UK</div>
             </div>
         </div>
-        <div class="slide-date">Monday, 21 July</div>
+        <div class="header-right-content"><div class="slide-date">Monday, 21 July</div><div class="current-time">13:15-14:45</div><div class="session-type">Technical Afternoon Sessions 1</div></div>
     </div>
     <div class="slide-main">
-        <div class="current-time">13:15-14:45</div>
-        <div class="session-type">Technical Afternoon Sessions 1</div>
+        
+        
         <div class="sessions-container">
             <div class="session-card">
                 <div class="session-title">DS4AI/ML 1: Sustainable and Efficient Training</div>
@@ -982,7 +983,7 @@
                 </div>
             </div>
             <div class="session-card">
-                <div class="session-title">S&P 1: Attacks and Defense in Collaboration</div>
+                <div class="session-title">S&amp;P 1: Attacks and Defense in Collaboration</div>
                 <div class="session-room">Megalith 3</div>
                 <div class="session-chair">Chair: David Mohaisen, University of Central Florida</div>
                 <div class="session-papers">
@@ -1007,7 +1008,6 @@
     </div>
     </div>
 
-    <!-- Slide 11: Monday Coffee Break -->
     <div class="slide break-slide">
     <div class="slide-header">
         <div class="header-left">
@@ -1026,7 +1026,6 @@
     </div>
     </div>
 
-    <!-- Slide 12: Monday Afternoon Session 2 -->
     <div class="slide main-conference">
     <div class="slide-header">
         <div class="header-left">
@@ -1036,11 +1035,11 @@
                 <div class="conference-location">Glasgow, UK</div>
             </div>
         </div>
-        <div class="slide-date">Monday, 21 July</div>
+        <div class="header-right-content"><div class="slide-date">Monday, 21 July</div><div class="current-time">15:15-16:45</div><div class="session-type">Technical Afternoon Sessions 2</div></div>
     </div>
     <div class="slide-main">
-        <div class="current-time">15:15-16:45</div>
-        <div class="session-type">Technical Afternoon Sessions 2</div>
+        
+        
         <div class="sessions-container">
             <div class="session-card">
                 <div class="session-title">AI/ML 2: Efficient Training and Resource Management</div>
@@ -1054,7 +1053,7 @@
                 </div>
             </div>
             <div class="session-card">
-                <div class="session-title">IoT&CPS 1: Mobile Agents and Perception</div>
+                <div class="session-title">IoT&amp;CPS 1: Mobile Agents and Perception</div>
                 <div class="session-room">Megalith 3</div>
                 <div class="session-chair">Chair: Angelos Marnerides, University of Cyprus</div>
                 <div class="session-papers">
@@ -1065,7 +1064,7 @@
                 </div>
             </div>
             <div class="session-card">
-                <div class="session-title">BC&DB 2: Smart Contracts and Consensus</div>
+                <div class="session-title">BC&amp;DB 2: Smart Contracts and Consensus</div>
                 <div class="session-room">Finnieston</div>
                 <div class="session-chair">Chair: Xiapu Luo, Hong Kong Polytechnic University</div>
                 <div class="session-papers">
@@ -1079,7 +1078,6 @@
     </div>
     </div>
 
-    <!-- Slide 13: WiDCS Event -->
     <div class="slide break-slide">
     <div class="slide-header">
         <div class="header-left">
@@ -1094,11 +1092,10 @@
     <div class="slide-main">
         <div class="break-title">Women in Distributed Computing Systems (WiDCS)</div>
         <div class="break-time">17:00-18:30</div>
-        <div style="font-size: 1.6em; color: #B8E6E1;">Event & Reception - Megalith 2, Radisson Blu</div>
+        <div style="font-size: 1.6em; color: #B8E6E1;">Event &amp; Reception - Megalith 2, Radisson Blu</div>
     </div>
     </div>
 
-    <!-- Slide 14: Tuesday Keynote -->
     <div class="slide break-slide keynote-slide">
     <div class="slide-header">
         <div class="header-left">
@@ -1114,11 +1111,10 @@
         <div class="break-title">Keynote 2</div>
         <div class="keynote-speaker">Ling Liu</div>
         <div class="break-time">09:00-10:00</div>
-        <div class="session-room" style="font-size: 1.6em; color: #B8E6E1;">Megalith 2 & 3</div>
+        <div class="session-room" style="font-size: 1.6em; color: #B8E6E1;">Megalith 2 &amp; 3</div>
     </div>
     </div>
 
-    <!-- After Tuesday Keynote (09:00–10:00) -->
     <div class="slide break-slide">
         <div class="slide-header">
             <div class="header-left">
@@ -1137,7 +1133,6 @@
         </div>
     </div>
 
-    <!-- Slide 15: Tuesday Morning Sessions with Industry -->
     <div class="slide industry-slide">
     <div class="slide-header">
         <div class="header-left">
@@ -1147,11 +1142,11 @@
                 <div class="conference-location">Glasgow, UK</div>
             </div>
         </div>
-        <div class="slide-date">Tuesday, 22 July</div>
+        <div class="header-right-content"><div class="slide-date">Tuesday, 22 July</div><div class="current-time">10:30-12:00</div><div class="session-type">Technical Sessions with Industry Track</div></div>
     </div>
     <div class="slide-main">
-        <div class="current-time">10:30-12:00</div>
-        <div class="session-type">Technical Sessions with Industry Track</div>
+        
+        
         <div class="sessions-container">
             <div class="session-card">
                 <div class="session-title">DS4AI/ML 2: Distributed Training and Inference</div>
@@ -1165,7 +1160,7 @@
                 </div>
             </div>
             <div class="session-card">
-                <div class="session-title">S&P2: Security and Privacy in AI and ML</div>
+                <div class="session-title">S&amp;P2: Security and Privacy in AI and ML</div>
                 <div class="session-room">Megalith 3</div>
                 <div class="session-chair">Chair: Shahid Raza, University of Glasgow</div>
                 <div class="session-papers">
@@ -1201,7 +1196,6 @@
     </div>
     </div>
 
-    <!-- After Tuesday Morning Session (10:30–12:00) -->
     <div class="slide break-slide">
         <div class="slide-header">
             <div class="header-left">
@@ -1220,7 +1214,6 @@
         </div>
     </div>
 
-    <!-- Slide 16: Tuesday Afternoon Session 1 -->
     <div class="slide main-conference">
     <div class="slide-header">
         <div class="header-left">
@@ -1230,11 +1223,11 @@
                 <div class="conference-location">Glasgow, UK</div>
             </div>
         </div>
-        <div class="slide-date">Tuesday, 22 July</div>
+        <div class="header-right-content"><div class="slide-date">Tuesday, 22 July</div><div class="current-time">13:15-14:45</div><div class="session-type">Technical Afternoon Sessions 1</div></div>
     </div>
     <div class="slide-main">
-        <div class="current-time">13:15-14:45</div>
-        <div class="session-type">Technical Afternoon Sessions 1</div>
+        
+        
         <div class="sessions-container">
             <div class="session-card">
                 <div class="session-title">DS4AI/ML 3: Privacy-preserving and Sustainable AI</div>
@@ -1248,7 +1241,7 @@
                 </div>
             </div>
             <div class="session-card">
-                <div class="session-title">BC&DB 3: Cross-chain and Scalability</div>
+                <div class="session-title">BC&amp;DB 3: Cross-chain and Scalability</div>
                 <div class="session-room">Megalith 3</div>
                 <div class="session-chair">Chair: Thomas Locher, DFINITY Foundation</div>
                 <div class="session-papers">
@@ -1284,7 +1277,6 @@
     </div>
     </div>
 
-    <!-- After Tuesday Afternoon Session 1 -->
     <div class="slide break-slide">
         <div class="slide-header">
             <div class="header-left">
@@ -1303,7 +1295,6 @@
         </div>
     </div>
 
-    <!-- Slide 17: Posters & Demonstrations -->
     <div class="slide break-slide">
     <div class="slide-header">
         <div class="header-left">
@@ -1316,13 +1307,12 @@
         <div class="slide-date">Tuesday, 22 July</div>
     </div>
     <div class="slide-main">
-        <div class="break-title">Posters & Demonstrations</div>
+        <div class="break-title">Posters &amp; Demonstrations</div>
         <div class="break-time">15:15-16:45</div>
         <div style="font-size: 1.6em; color: #B8E6E1;">Megalith 1</div>
     </div>
     </div>
 
-    <!-- After Tuesday Posters & Demonstrations -->
     <div class="slide break-slide">
         <div class="slide-header">
             <div class="header-left">
@@ -1341,7 +1331,6 @@
         </div>
     </div>
 
-    <!-- Slide 18: Tuesday Afternoon Session 2 -->
     <div class="slide main-conference">
     <div class="slide-header">
         <div class="header-left">
@@ -1351,14 +1340,14 @@
                 <div class="conference-location">Glasgow, UK</div>
             </div>
         </div>
-        <div class="slide-date">Tuesday, 22 July</div>
+        <div class="header-right-content"><div class="slide-date">Tuesday, 22 July</div><div class="current-time">17:00-18:30</div><div class="session-type">Technical Afternoon Sessions 2</div></div>
     </div>
     <div class="slide-main">
-        <div class="current-time">17:00-18:30</div>
-        <div class="session-type">Technical Afternoon Sessions 2</div>
+        
+        
         <div class="sessions-container">
             <div class="session-card">
-                <div class="session-title">IoT&CPS 2: Intelligent Computing and Sensing</div>
+                <div class="session-title">IoT&amp;CPS 2: Intelligent Computing and Sensing</div>
                 <div class="session-room">Megalith 2</div>
                 <div class="session-chair">Chair: Stefanie Roos, University of Kaiserslautern-Landau</div>
                 <div class="session-papers">
@@ -1394,7 +1383,6 @@
     </div>
     </div>
 
-    <!-- Slide 19: Banquet -->
     <div class="slide break-slide">
     <div class="slide-header">
         <div class="header-left">
@@ -1413,7 +1401,6 @@
     </div>
     </div>
 
-    <!-- Slide 20: Wednesday Keynote -->
     <div class="slide break-slide keynote-slide">
     <div class="slide-header">
         <div class="header-left">
@@ -1429,11 +1416,10 @@
         <div class="break-title">Keynote 3</div>
         <div class="keynote-speaker">Peter Pietzuch</div>
         <div class="break-time">09:00-10:00</div>
-        <div class="session-room" style="font-size: 1.6em; color: #B8E6E1;">Megalith 2 & 3</div>
+        <div class="session-room" style="font-size: 1.6em; color: #B8E6E1;">Megalith 2 &amp; 3</div>
     </div>
     </div>
 
-    <!-- After Wednesday Keynote (09:00–10:00) -->
     <div class="slide break-slide">
         <div class="slide-header">
             <div class="header-left">
@@ -1452,7 +1438,6 @@
         </div>
     </div>
 
-    <!-- Slide 21: Wednesday Morning Sessions -->
     <div class="slide main-conference">
     <div class="slide-header">
         <div class="header-left">
@@ -1462,11 +1447,11 @@
                 <div class="conference-location">Glasgow, UK</div>
             </div>
         </div>
-        <div class="slide-date">Wednesday, 23 July</div>
+        <div class="header-right-content"><div class="slide-date">Wednesday, 23 July</div><div class="current-time">10:30-12:00</div><div class="session-type">Technical Morning Sessions 1</div></div>
     </div>
     <div class="slide-main">
-        <div class="current-time">10:30-12:00</div>
-        <div class="session-type">Technical Morning Sessions 1</div>
+        
+        
         <div class="sessions-container">
             <div class="session-card">
                 <div class="session-title">DS4AI/ML 4: Collaborative and Efficient Deep Learning</div>
@@ -1480,7 +1465,7 @@
                 </div>
             </div>
             <div class="session-card">
-                <div class="session-title">S&P3: Secure and Privacy-Preserving in FL</div>
+                <div class="session-title">S&amp;P3: Secure and Privacy-Preserving in FL</div>
                 <div class="session-room">Megalith 3</div>
                 <div class="session-chair">Chair: Ilir Murturi, TU Wien</div>
                 <div class="session-papers">
@@ -1516,7 +1501,6 @@
     </div>
     </div>
 
-    <!-- After Wednesday Morning Session (10:30–12:00) -->
     <div class="slide break-slide">
         <div class="slide-header">
             <div class="header-left">
@@ -1535,7 +1519,6 @@
         </div>
     </div>
 
-    <!-- Slide 22: Wednesday Afternoon Session 1 -->
     <div class="slide main-conference">
     <div class="slide-header">
         <div class="header-left">
@@ -1545,11 +1528,11 @@
                 <div class="conference-location">Glasgow, UK</div>
             </div>
         </div>
-        <div class="slide-date">Wednesday, 23 July</div>
+        <div class="header-right-content"><div class="slide-date">Wednesday, 23 July</div><div class="current-time">13:15-14:45</div><div class="session-type">Technical Afternoon Sessions 1</div></div>
     </div>
     <div class="slide-main">
-        <div class="current-time">13:15-14:45</div>
-        <div class="session-type">Technical Afternoon Sessions 1</div>
+        
+        
         <div class="sessions-container">
             <div class="session-card">
                 <div class="session-title">DS4AI/ML 5: Inference and Resource Management</div>
@@ -1563,7 +1546,7 @@
                 </div>
             </div>
             <div class="session-card">
-                <div class="session-title">E&D 1: Smart Infrastructure and Resource Management</div>
+                <div class="session-title">E&amp;D 1: Smart Infrastructure and Resource Management</div>
                 <div class="session-room">Megalith 3</div>
                 <div class="session-chair">Chair: Chenwei Xie, Snowflake</div>
                 <div class="session-papers">
@@ -1600,7 +1583,6 @@
     </div>
     </div>
 
-    <!-- After Wednesday Afternoon Session 1 (13:15–14:45) -->
     <div class="slide break-slide">
         <div class="slide-header">
             <div class="header-left">
@@ -1619,7 +1601,6 @@
         </div>
     </div>
 
-    <!-- Slide 23: Wednesday Final Sessions -->
     <div class="slide main-conference">
     <div class="slide-header">
         <div class="header-left">
@@ -1629,11 +1610,11 @@
                 <div class="conference-location">Glasgow, UK</div>
             </div>
         </div>
-        <div class="slide-date">Wednesday, 23 July</div>
+        <div class="header-right-content"><div class="slide-date">Wednesday, 23 July</div><div class="current-time">15:15-16:45</div><div class="session-type">Final Technical Sessions</div></div>
     </div>
     <div class="slide-main">
-        <div class="current-time">15:15-16:45</div>
-        <div class="session-type">Final Technical Sessions</div>
+        
+        
         <div class="sessions-container">
             <div class="session-card">
                 <div class="session-title">AI/ML 3: Efficient and Secure Federated Learning</div>
@@ -1646,7 +1627,7 @@
                 </div>
             </div>
             <div class="session-card">
-                <div class="session-title">E&D 2: Advanced Management and Execution</div>
+                <div class="session-title">E&amp;D 2: Advanced Management and Execution</div>
                 <div class="session-room">Megalith 3</div>
                 <div class="session-chair">Chair: Probir Roy, University of Michigan Dearborn</div>
                 <div class="session-papers">
@@ -1682,7 +1663,6 @@
     </div>
     </div>
 
-    <!-- Slide 24: Conference End -->
     <div class="slide break-slide">
     <div class="slide-header">
         <div class="header-left">
