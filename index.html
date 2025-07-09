@@ -30,53 +30,42 @@
 
         .slide-header {
             display: flex;
-            flex-direction: column;
+            justify-content: space-between;
             align-items: center;
-            margin-bottom: 15px;
+            margin-bottom: 25px;
             padding-bottom: 15px;
             border-bottom: 3px solid #F6BC34;
         }
-        
-        /* For break/keynote slides that don't get restructured */
-        .slide.break-slide .slide-header {
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: flex-start;
-        }
-
-        .header-top-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            width: 100%;
-            margin-bottom: 15px;
-        }
-
-        .header-session-details {
-            text-align: center;
-        }
-
-        .header-session-details .current-time {
-            font-size: 2.2em;
-            font-weight: bold;
-            color: #F6BC34;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
-            margin-bottom: 5px;
-            text-align: center;
-        }
-
-        .header-session-details .session-type {
-            font-size: 1.2em;
-            color: #B8E6E1;
-            text-align: center;
-            margin-bottom: 0;
-        }
-
 
         .header-left {
             display: flex;
             align-items: center;
             gap: 20px;
+        }
+
+        .header-center-content {
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .header-center-content .current-time,
+        .header-center-content .session-type {
+            display: inline-block;
+            vertical-align: middle;
+            margin: 0;
+            padding: 0 0.3em;
+        }
+
+        .header-center-content .current-time {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #F6BC34;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .header-center-content .session-type {
+            font-size: 1.1em;
+            color: #B8E6E1;
         }
 
         .logo-placeholder {
@@ -113,6 +102,7 @@
             font-weight: bold;
             color: #F6BC34;
             text-align: right;
+            flex-shrink: 0;
         }
 
         .current-time {
@@ -512,20 +502,18 @@
 
     <div class="slide active workshop-slide">
         <div class="slide-header">
-            <div class="header-top-row">
-                <div class="header-left">
-                    <div class="logo-placeholder"><img src="logo.png" alt="ICDCS 2025 Logo" style="width: 140px; height: 140px; object-fit: contain;"></div>
-                    <div class="conference-info">
-                        <div class="conference-title">ICDCS 2025</div>
-                        <div class="conference-location">Glasgow, UK</div>
-                    </div>
+            <div class="header-left">
+                <div class="logo-placeholder"><img src="logo.png" alt="ICDCS 2025 Logo" style="width: 140px; height: 140px; object-fit: contain;"></div>
+                <div class="conference-info">
+                    <div class="conference-title">ICDCS 2025</div>
+                    <div class="conference-location">Glasgow, UK</div>
                 </div>
-                <div class="slide-date">Sunday, 20 July</div>
             </div>
-            <div class="header-session-details">
+            <div class="header-center-content">
                 <div class="current-time">09:00-10:30</div>
                 <div class="session-type">Workshops &amp; Tutorials (Morning Session 1)</div>
             </div>
+            <div class="slide-date">Sunday, 20 July</div>
         </div>
         <div class="slide-main">
             <div class="sessions-container tight">
@@ -608,20 +596,18 @@
 
     <div class="slide workshop-slide">
         <div class="slide-header">
-            <div class="header-top-row">
-                <div class="header-left">
-                    <div class="logo-placeholder"><img src="logo.png" alt="ICDCS 2025 Logo" style="width: 140px; height: 140px; object-fit: contain;"></div>
-                    <div class="conference-info">
-                        <div class="conference-title">ICDCS 2025</div>
-                        <div class="conference-location">Glasgow, UK</div>
-                    </div>
+            <div class="header-left">
+                <div class="logo-placeholder"><img src="logo.png" alt="ICDCS 2025 Logo" style="width: 140px; height: 140px; object-fit: contain;"></div>
+                <div class="conference-info">
+                    <div class="conference-title">ICDCS 2025</div>
+                    <div class="conference-location">Glasgow, UK</div>
                 </div>
-                <div class="slide-date">Sunday, 20 July</div>
             </div>
-            <div class="header-session-details">
+            <div class="header-center-content">
                 <div class="current-time">11:00-12:30</div>
                 <div class="session-type">Workshops &amp; Tutorials (Morning Session 2)</div>
             </div>
+            <div class="slide-date">Sunday, 20 July</div>
         </div>
         <div class="slide-main">
             <div class="sessions-container tight">
@@ -704,20 +690,18 @@
 
     <div class="slide workshop-slide">
         <div class="slide-header">
-            <div class="header-top-row">
-                <div class="header-left">
-                    <div class="logo-placeholder"><img src="logo.png" alt="ICDCS 2025 Logo" style="width: 140px; height: 140px; object-fit: contain;"></div>
-                    <div class="conference-info">
-                        <div class="conference-title">ICDCS 2025</div>
-                        <div class="conference-location">Glasgow, UK</div>
-                    </div>
+            <div class="header-left">
+                <div class="logo-placeholder"><img src="logo.png" alt="ICDCS 2025 Logo" style="width: 140px; height: 140px; object-fit: contain;"></div>
+                <div class="conference-info">
+                    <div class="conference-title">ICDCS 2025</div>
+                    <div class="conference-location">Glasgow, UK</div>
                 </div>
-                <div class="slide-date">Sunday, 20 July</div>
             </div>
-            <div class="header-session-details">
+            <div class="header-center-content">
                 <div class="current-time">13:45-15:15</div>
                 <div class="session-type">Workshops, Tutorials &amp; Doctoral Consortium</div>
             </div>
+            <div class="slide-date">Sunday, 20 July</div>
         </div>
         <div class="slide-main">
             <div class="sessions-container tight">
@@ -795,20 +779,18 @@
 
     <div class="slide workshop-slide">
         <div class="slide-header">
-            <div class="header-top-row">
-                <div class="header-left">
-                    <div class="logo-placeholder"><img src="logo.png" alt="ICDCS 2025 Logo" style="width: 140px; height: 140px; object-fit: contain;"></div>
-                    <div class="conference-info">
-                        <div class="conference-title">ICDCS 2025</div>
-                        <div class="conference-location">Glasgow, UK</div>
-                    </div>
+            <div class="header-left">
+                <div class="logo-placeholder"><img src="logo.png" alt="ICDCS 2025 Logo" style="width: 140px; height: 140px; object-fit: contain;"></div>
+                <div class="conference-info">
+                    <div class="conference-title">ICDCS 2025</div>
+                    <div class="conference-location">Glasgow, UK</div>
                 </div>
-                <div class="slide-date">Sunday, 20 July</div>
             </div>
-            <div class="header-session-details">
+            <div class="header-center-content">
                 <div class="current-time">15:45-17:15</div>
                 <div class="session-type">Workshops, Tutorials &amp; Doctoral Consortium (Afternoon Session 2)</div>
             </div>
+            <div class="slide-date">Sunday, 20 July</div>
         </div>
         <div class="slide-main">
             <div class="sessions-container tight">
@@ -923,20 +905,18 @@
 
     <div class="slide main-conference">
         <div class="slide-header">
-            <div class="header-top-row">
-                <div class="header-left">
-                    <div class="logo-placeholder"><img src="logo.png" alt="ICDCS 2025 Logo" style="width: 140px; height: 140px; object-fit: contain;"></div>
-                    <div class="conference-info">
-                        <div class="conference-title">ICDCS 2025</div>
-                        <div class="conference-location">Glasgow, UK</div>
-                    </div>
+            <div class="header-left">
+                <div class="logo-placeholder"><img src="logo.png" alt="ICDCS 2025 Logo" style="width: 140px; height: 140px; object-fit: contain;"></div>
+                <div class="conference-info">
+                    <div class="conference-title">ICDCS 2025</div>
+                    <div class="conference-location">Glasgow, UK</div>
                 </div>
-                <div class="slide-date">Monday, 21 July</div>
             </div>
-            <div class="header-session-details">
+            <div class="header-center-content">
                 <div class="current-time">10:30-12:00</div>
                 <div class="session-type">Technical Morning Sessions 1</div>
             </div>
+            <div class="slide-date">Monday, 21 July</div>
         </div>
         <div class="slide-main">
             <div class="sessions-container">
@@ -997,20 +977,18 @@
 
     <div class="slide main-conference">
     <div class="slide-header">
-        <div class="header-top-row">
-            <div class="header-left">
-                <div class="logo-placeholder"><img src="logo.png" alt="ICDCS 2025 Logo" style="width: 140px; height: 140px; object-fit: contain;"></div>
-                <div class="conference-info">
-                    <div class="conference-title">ICDCS 2025</div>
-                    <div class="conference-location">Glasgow, UK</div>
-                </div>
+        <div class="header-left">
+            <div class="logo-placeholder"><img src="logo.png" alt="ICDCS 2025 Logo" style="width: 140px; height: 140px; object-fit: contain;"></div>
+            <div class="conference-info">
+                <div class="conference-title">ICDCS 2025</div>
+                <div class="conference-location">Glasgow, UK</div>
             </div>
-            <div class="slide-date">Monday, 21 July</div>
         </div>
-        <div class="header-session-details">
+        <div class="header-center-content">
             <div class="current-time">13:15-14:45</div>
             <div class="session-type">Technical Afternoon Sessions 1</div>
         </div>
+        <div class="slide-date">Monday, 21 July</div>
     </div>
     <div class="slide-main">
         <div class="sessions-container">
@@ -1071,20 +1049,18 @@
 
     <div class="slide main-conference">
     <div class="slide-header">
-        <div class="header-top-row">
-            <div class="header-left">
-                <div class="logo-placeholder"><img src="logo.png" alt="ICDCS 2025 Logo" style="width: 140px; height: 140px; object-fit: contain;"></div>
-                <div class="conference-info">
-                    <div class="conference-title">ICDCS 2025</div>
-                    <div class="conference-location">Glasgow, UK</div>
-                </div>
+        <div class="header-left">
+            <div class="logo-placeholder"><img src="logo.png" alt="ICDCS 2025 Logo" style="width: 140px; height: 140px; object-fit: contain;"></div>
+            <div class="conference-info">
+                <div class="conference-title">ICDCS 2025</div>
+                <div class="conference-location">Glasgow, UK</div>
             </div>
-            <div class="slide-date">Monday, 21 July</div>
         </div>
-        <div class="header-session-details">
+        <div class="header-center-content">
             <div class="current-time">15:15-16:45</div>
             <div class="session-type">Technical Afternoon Sessions 2</div>
         </div>
+        <div class="slide-date">Monday, 21 July</div>
     </div>
     <div class="slide-main">
         <div class="sessions-container">
@@ -1182,20 +1158,18 @@
 
     <div class="slide industry-slide">
     <div class="slide-header">
-        <div class="header-top-row">
-            <div class="header-left">
-                <div class="logo-placeholder"><img src="logo.png" alt="ICDCS 2025 Logo" style="width: 140px; height: 140px; object-fit: contain;"></div>
-                <div class="conference-info">
-                    <div class="conference-title">ICDCS 2025</div>
-                    <div class="conference-location">Glasgow, UK</div>
-                </div>
+        <div class="header-left">
+            <div class="logo-placeholder"><img src="logo.png" alt="ICDCS 2025 Logo" style="width: 140px; height: 140px; object-fit: contain;"></div>
+            <div class="conference-info">
+                <div class="conference-title">ICDCS 2025</div>
+                <div class="conference-location">Glasgow, UK</div>
             </div>
-            <div class="slide-date">Tuesday, 22 July</div>
         </div>
-        <div class="header-session-details">
+        <div class="header-center-content">
             <div class="current-time">10:30-12:00</div>
             <div class="session-type">Technical Sessions with Industry Track</div>
         </div>
+        <div class="slide-date">Tuesday, 22 July</div>
     </div>
     <div class="slide-main">
         <div class="sessions-container">
@@ -1267,20 +1241,18 @@
 
     <div class="slide main-conference">
     <div class="slide-header">
-        <div class="header-top-row">
-            <div class="header-left">
-                <div class="logo-placeholder"><img src="logo.png" alt="ICDCS 2025 Logo" style="width: 140px; height: 140px; object-fit: contain;"></div>
-                <div class="conference-info">
-                    <div class="conference-title">ICDCS 2025</div>
-                    <div class="conference-location">Glasgow, UK</div>
-                </div>
+        <div class="header-left">
+            <div class="logo-placeholder"><img src="logo.png" alt="ICDCS 2025 Logo" style="width: 140px; height: 140px; object-fit: contain;"></div>
+            <div class="conference-info">
+                <div class="conference-title">ICDCS 2025</div>
+                <div class="conference-location">Glasgow, UK</div>
             </div>
-            <div class="slide-date">Tuesday, 22 July</div>
         </div>
-        <div class="header-session-details">
+        <div class="header-center-content">
             <div class="current-time">13:15-14:45</div>
             <div class="session-type">Technical Afternoon Sessions 1</div>
         </div>
+        <div class="slide-date">Tuesday, 22 July</div>
     </div>
     <div class="slide-main">
         <div class="sessions-container">
@@ -1388,20 +1360,18 @@
 
     <div class="slide main-conference">
     <div class="slide-header">
-        <div class="header-top-row">
-            <div class="header-left">
-                <div class="logo-placeholder"><img src="logo.png" alt="ICDCS 2025 Logo" style="width: 140px; height: 140px; object-fit: contain;"></div>
-                <div class="conference-info">
-                    <div class="conference-title">ICDCS 2025</div>
-                    <div class="conference-location">Glasgow, UK</div>
-                </div>
+        <div class="header-left">
+            <div class="logo-placeholder"><img src="logo.png" alt="ICDCS 2025 Logo" style="width: 140px; height: 140px; object-fit: contain;"></div>
+            <div class="conference-info">
+                <div class="conference-title">ICDCS 2025</div>
+                <div class="conference-location">Glasgow, UK</div>
             </div>
-            <div class="slide-date">Tuesday, 22 July</div>
         </div>
-        <div class="header-session-details">
+        <div class="header-center-content">
             <div class="current-time">17:00-18:30</div>
             <div class="session-type">Technical Afternoon Sessions 2</div>
         </div>
+        <div class="slide-date">Tuesday, 22 July</div>
     </div>
     <div class="slide-main">
         <div class="sessions-container">
@@ -1499,20 +1469,18 @@
 
     <div class="slide main-conference">
     <div class="slide-header">
-        <div class="header-top-row">
-            <div class="header-left">
-                <div class="logo-placeholder"><img src="logo.png" alt="ICDCS 2025 Logo" style="width: 140px; height: 140px; object-fit: contain;"></div>
-                <div class="conference-info">
-                    <div class="conference-title">ICDCS 2025</div>
-                    <div class="conference-location">Glasgow, UK</div>
-                </div>
+        <div class="header-left">
+            <div class="logo-placeholder"><img src="logo.png" alt="ICDCS 2025 Logo" style="width: 140px; height: 140px; object-fit: contain;"></div>
+            <div class="conference-info">
+                <div class="conference-title">ICDCS 2025</div>
+                <div class="conference-location">Glasgow, UK</div>
             </div>
-            <div class="slide-date">Wednesday, 23 July</div>
         </div>
-        <div class="header-session-details">
+        <div class="header-center-content">
             <div class="current-time">10:30-12:00</div>
             <div class="session-type">Technical Morning Sessions 1</div>
         </div>
+        <div class="slide-date">Wednesday, 23 July</div>
     </div>
     <div class="slide-main">
         <div class="sessions-container">
@@ -1584,20 +1552,18 @@
 
     <div class="slide main-conference">
     <div class="slide-header">
-        <div class="header-top-row">
-            <div class="header-left">
-                <div class="logo-placeholder"><img src="logo.png" alt="ICDCS 2025 Logo" style="width: 140px; height: 140px; object-fit: contain;"></div>
-                <div class="conference-info">
-                    <div class="conference-title">ICDCS 2025</div>
-                    <div class="conference-location">Glasgow, UK</div>
-                </div>
+        <div class="header-left">
+            <div class="logo-placeholder"><img src="logo.png" alt="ICDCS 2025 Logo" style="width: 140px; height: 140px; object-fit: contain;"></div>
+            <div class="conference-info">
+                <div class="conference-title">ICDCS 2025</div>
+                <div class="conference-location">Glasgow, UK</div>
             </div>
-            <div class="slide-date">Wednesday, 23 July</div>
         </div>
-        <div class="header-session-details">
+        <div class="header-center-content">
             <div class="current-time">13:15-14:45</div>
             <div class="session-type">Technical Afternoon Sessions 1</div>
         </div>
+        <div class="slide-date">Wednesday, 23 July</div>
     </div>
     <div class="slide-main">
         <div class="sessions-container">
@@ -1670,20 +1636,18 @@
 
     <div class="slide main-conference">
     <div class="slide-header">
-        <div class="header-top-row">
-            <div class="header-left">
-                <div class="logo-placeholder"><img src="logo.png" alt="ICDCS 2025 Logo" style="width: 140px; height: 140px; object-fit: contain;"></div>
-                <div class="conference-info">
-                    <div class="conference-title">ICDCS 2025</div>
-                    <div class="conference-location">Glasgow, UK</div>
-                </div>
+        <div class="header-left">
+            <div class="logo-placeholder"><img src="logo.png" alt="ICDCS 2025 Logo" style="width: 140px; height: 140px; object-fit: contain;"></div>
+            <div class="conference-info">
+                <div class="conference-title">ICDCS 2025</div>
+                <div class="conference-location">Glasgow, UK</div>
             </div>
-            <div class="slide-date">Wednesday, 23 July</div>
         </div>
-        <div class="header-session-details">
+        <div class="header-center-content">
             <div class="current-time">15:15-16:45</div>
             <div class="session-type">Final Technical Sessions</div>
         </div>
+        <div class="slide-date">Wednesday, 23 July</div>
     </div>
     <div class="slide-main">
         <div class="sessions-container">
